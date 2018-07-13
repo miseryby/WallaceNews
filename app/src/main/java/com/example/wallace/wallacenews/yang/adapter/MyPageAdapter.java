@@ -1,4 +1,4 @@
-package com.example.wallace.wallacenews.peng.adapter;
+package com.example.wallace.wallacenews.yang.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
