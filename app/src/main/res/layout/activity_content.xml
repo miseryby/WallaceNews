@@ -3,21 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-   <LinearLayout
+   <FrameLayout
+       android:id="@+id/fragment_container"
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="6">
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:text="123"/>
-   </LinearLayout>
+       android:layout_weight="9">
+
+   </FrameLayout>
     <RadioGroup
         android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="1dp"
         android:layout_marginTop="2dp"
         android:orientation="horizontal">
         <RadioButton
