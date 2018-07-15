@@ -36,7 +36,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 
         fm1 =new NewsListFragment();
-        fm2 =new NewsMeFragment();
+        fm2 =new NewsListFragment();
         fm3 =new NewsMeFragment();
         listfragment.add( fm1);
         listfragment.add( fm2 );

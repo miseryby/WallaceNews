@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:text="请输入你的用户名"
+        android:textColor="#bfbfbf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+    android:layout_margin="10dp"
+    android:id="@+id/rg_name"
+    android:layout_width="match_parent"
+    android:text="请输入你的用户名"
+    android:textColor="#bfbfbf"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edittext_style"/>
+    <TextView
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        android:text="请输入你的密码"
+        android:textColor="#bfbfbf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/rg_pw"
+        android:layout_width="match_parent"
+        android:inputType="textPassword"
+        android:textColor="#bfbfbf"
+        android:text="请输入你的密码"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"/>
+    <TextView
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        android:text="请再次输入你的密码"
+        android:textColor="#bfbfbf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/rg_pw2"
+        android:layout_width="match_parent"
+        android:inputType="textPassword"
+        android:textColor="#bfbfbf"
+        android:text="请再次输入你的密码"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"/>
+    <Button
+        android:id="@+id/btn_rg"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:text="登录"
+        android:textColor="#1296db"
+        android:background="@drawable/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
