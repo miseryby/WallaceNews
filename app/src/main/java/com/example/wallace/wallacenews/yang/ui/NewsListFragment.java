@@ -2,6 +2,8 @@ package com.example.wallace.wallacenews.yang.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +13,26 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wallace.wallacenews.R;
+import com.example.wallace.wallacenews.peng.Util.NetworkNewsUtil;
+import com.example.wallace.wallacenews.peng.beans.Data;
 import com.example.wallace.wallacenews.yang.test.News;
 import com.example.wallace.wallacenews.yang.test.NewsLab;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NewsListFragment extends android.support.v4.app.Fragment{
-    //nothing yet
+
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mRecyclerView.setAdapter(new NewsAdapter(NetworkNewsUtil.GetTopNewsFromNetwork()));
+        }
+    };
+    List<Data> mDataList =new ArrayList<>(  );
     private RecyclerView mRecyclerView;
     private NewsAdapter mNewsAdapter;
     @Override
@@ -33,37 +47,40 @@ public class NewsListFragment extends android.support.v4.app.Fragment{
         View v = inflater.inflate( R.layout.fragment_item,container,false );
         mRecyclerView =(RecyclerView) v.findViewById( R.id.rcy );
         mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
-        updateUI();
+
+        handler.sendEmptyMessage( 0 );
         return  v;
     }
 
     private void updateUI() {
 
-       NewsLab newsLab =NewsLab.get( getActivity()  );
-       List<News> newsList =newsLab.getNews();
-        mNewsAdapter =new NewsAdapter( newsList );
-        mRecyclerView.setAdapter( mNewsAdapter );
+//       NewsLab newsLab =NewsLab.get( getActivity()  );
+//       List<News> newsList =newsLab.getNews();
+
+//        mDataList = NetworkNewsUtil.GetTopNewsFromNetwork();
+//        mNewsAdapter =new NewsAdapter( mDataList );
+//        mRecyclerView.setAdapter( mNewsAdapter );
     }
 
     private class NewsHolder extends RecyclerView.ViewHolder{
         private TextView mTextView1;
         private TextView mTextView2;
-        private  News news;
+        private  Data news;
         public NewsHolder(LayoutInflater inflater,ViewGroup parent) {
 
             super( inflater.inflate( R.layout.list_item_news,parent,false ) );
             mTextView1 =(TextView) itemView.findViewById( R.id.news_title );
             mTextView2 =(TextView) itemView.findViewById( R.id.new_detail );
         }
-        public void bind(News news){
+        public void bind(Data news){
             this.news =news;
             mTextView1.setText( news.getTitle() );
             mTextView2.setText( news.getDate().toString() );
         }
     }
     private  class  NewsAdapter extends RecyclerView.Adapter<NewsHolder>{
-        List<News> mList =new ArrayList<>(  );
-        public NewsAdapter(List<News> news){
+        List<Data> mList =new ArrayList<>(  );
+        public NewsAdapter(List<Data> news){
             mList = news;
         }
         @Override
@@ -75,7 +92,7 @@ public class NewsListFragment extends android.support.v4.app.Fragment{
 
         @Override
         public void onBindViewHolder(NewsHolder holder, int position) {
-            News news =mList.get( position );
+            Data news =mList.get( position );
             holder.bind( news );
         }
 
