@@ -1,6 +1,5 @@
 package com.example.wallace.wallacenews.yang.ui;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;

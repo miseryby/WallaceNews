@@ -1,5 +1,7 @@
 package com.example.wallace.wallacenews.peng.Util;
 
+import android.os.Handler;
+
 import com.example.wallace.wallacenews.peng.beans.Data;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,7 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 public class NetworkNewsUtil {
     private static String APPCODE = "APPCODE 1c47f03bc4324e638195a51a124ab4c1";
     private static String baseUrl = "http://toutiao-ali.juheapi.com/toutiao/index?type=";
@@ -28,42 +29,42 @@ public class NetworkNewsUtil {
     private static String newsType_caijing = "caijing";
     private static String newsType_shishang = "shishang";
 
-    public static List<Data> GetTopNewsFromNetwork()
+    public static List<Data> GetTopNewsFromNetwork(Handler handler)
     {
-        return GetNewsFromNetwork(newsType_top);
+        return GetNewsFromNetwork(newsType_top,handler);
     }
-    public static List<Data> GetShehuiNewsFromNetwork() {
-        return GetNewsFromNetwork(newsType_shehui);
+    public static List<Data> GetShehuiNewsFromNetwork(Handler handler) {
+        return GetNewsFromNetwork(newsType_shehui,handler);
     }
-    public static List<Data> GetGuoneiNewsFromNetwork() {
-        return GetNewsFromNetwork(newsType_guonei);
+    public static List<Data> GetGuoneiNewsFromNetwork(Handler handler) {
+        return GetNewsFromNetwork(newsType_guonei,handler);
     }
-    public static List<Data> GetGuojiNewsFromNetwork() {
-        return GetNewsFromNetwork(newsType_guoji);
+    public static List<Data> GetGuojiNewsFromNetwork(Handler handler) {
+        return GetNewsFromNetwork(newsType_guoji,handler);
     }
-    public static List<Data> GetYuleNewsFromNetwork()
+    public static List<Data> GetYuleNewsFromNetwork(Handler handler)
     {
-        return GetNewsFromNetwork(newsType_yule);
+        return GetNewsFromNetwork(newsType_yule,handler);
     }
-    public static List<Data> GetTiyuNewsFromNetwork()
+    public static List<Data> GetTiyuNewsFromNetwork(Handler handler)
     {
-        return GetNewsFromNetwork(newsType_tiyu);
+        return GetNewsFromNetwork(newsType_tiyu,handler);
     }
-    public static List<Data> GetJunshiNewsFromNetwork() {
-        return GetNewsFromNetwork(newsType_junshi);
+    public static List<Data> GetJunshiNewsFromNetwork(Handler handler) {
+        return GetNewsFromNetwork(newsType_junshi,handler);
     }
-    public static List<Data> GetShishangNewsFromNetwork() {
-        return GetNewsFromNetwork(newsType_shishang);
+    public static List<Data> GetShishangNewsFromNetwork(Handler handler) {
+        return GetNewsFromNetwork(newsType_shishang,handler);
     }
-    public static List<Data> GetCaijingNewsFromNetwork() {
-        return GetNewsFromNetwork(newsType_caijing);
+    public static List<Data> GetCaijingNewsFromNetwork(Handler handler) {
+        return GetNewsFromNetwork(newsType_caijing,handler);
     }
-    public static List<Data> GetKejiNewsFromNetwork()
+    public static List<Data> GetKejiNewsFromNetwork(Handler handler)
     {
-        return GetNewsFromNetwork(newsType_keji);
+        return GetNewsFromNetwork(newsType_keji,handler);
     }
 
-    public static List<Data> GetNewsFromNetwork(String newstype) {
+    private static List<Data> GetNewsFromNetwork(String newstype, Handler handler) {
 
         List<Data> datas = new ArrayList<>();
         try {
@@ -91,6 +92,7 @@ public class NetworkNewsUtil {
                     data.setUrl(temp.optString("url"));
                     data.setThumbnail_pic_s(temp.optString("thumbnail_pic_s"));
                     datas.add(data);
+                    handler.sendEmptyMessage(0);
                 }
                 return datas;
             }
