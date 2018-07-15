@@ -19,13 +19,13 @@ import java.util.List;
 
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
-    RadioGroup mRadioGroup;
-    RadioButton mRadioButton1, mRadioButton2, mRadioButton3;
+    private RadioGroup mRadioGroup;
+    private RadioButton mRadioButton1, mRadioButton2, mRadioButton3;
 
     private List<android.support.v4.app.Fragment> listfragment =new ArrayList<>(  ); //创建一个List<Fragment>
-    MyFragmentPagerAdapter mAdapter;
-    ViewPager vp;
-    android.support.v4.app.Fragment fm1,fm2,fm3;
+    private MyFragmentPagerAdapter mAdapter;
+    private ViewPager vp;
+    private android.support.v4.app.Fragment fm1,fm2,fm3;
     protected abstract android.support.v4.app.Fragment creatFragment();
 
     @Override
@@ -36,7 +36,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 
         fm1 =new NewsListFragment();
-        fm2 =new NewsListFragment();
+        fm2 =new DynamicListFragment();
         fm3 =new NewsMeFragment();
         listfragment.add( fm1);
         listfragment.add( fm2 );
@@ -56,7 +56,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     vp.setCurrentItem( 0,false );
                 }
                 if (checkedId == mRadioButton2.getId()) {
-                    Toast.makeText( SingleFragmentActivity.this, "性别是:男", Toast.LENGTH_SHORT ).show();
+
                     vp.setCurrentItem( 1,false );
 
                 }
