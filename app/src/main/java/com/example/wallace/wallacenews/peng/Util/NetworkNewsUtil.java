@@ -31,7 +31,7 @@ public class NetworkNewsUtil {
 
     public static List<Data> GetTopNewsFromNetwork(Handler handler)
     {
-        return GetNewsFromNetwork(newsType_top);
+        return GetNewsFromNetwork(newsType_top,handler);
     }
     public static List<Data> GetShehuiNewsFromNetwork(Handler handler) {
         return GetNewsFromNetwork(newsType_shehui,handler);
