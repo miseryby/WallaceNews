@@ -26,12 +26,12 @@
                 android:id="@+id/tv_login_login"
                 style="@style/userlogin_head_textView"
                 android:gravity="center_horizontal"
-                android:text="登录" />
+                android:text="@string/login" />
             <TextView
                 android:id="@+id/tv_login_register"
                 style="@style/userlogin_head_textView"
                 android:gravity="center_vertical|right"
-                android:text="注册"
+                android:text="@string/register"
                 android:paddingRight="15dp" />
         </LinearLayout>
 
@@ -45,12 +45,12 @@
             <EditText
                 style="@style/userlogin_edittext"
                 android:id="@+id/et_login_username"
-                android:hint="用户名/邮箱/手机号"
+                android:hint="@string/username"
                 android:inputType="phone|textEmailAddress"/>
             <EditText
                 style="@style/userlogin_edittext"
                 android:id="@+id/et_login_password"
-                android:hint="登录密码"
+                android:hint="@string/loginpassword"
                 android:inputType="textPassword"
                 android:layout_below="@id/et_login_username"
                 android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
                 android:id="@+id/bt_login_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="登录"
+                android:text="@string/login"
                 android:textSize="30dp"
                 android:background="#e20b0b"
                 android:layout_below="@id/tv_login_color"
@@ -83,14 +83,14 @@
                     android:id="@+id/tv_login_numberLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="手机号快捷登录"
+                    android:text="@string/phone_fast_login"
                     android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/tv_login_forgetPW"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="忘记密码"
+                    android:text="@string/forget_password"
                     android:gravity="right"
                     android:textSize="15dp"/>
             </LinearLayout>

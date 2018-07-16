@@ -28,7 +28,9 @@
                 android:layout_width="348dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="修改手机号"
+                android:text="@string/modify_phone_number"
+                android:textSize="20dp"
+                android:layout_marginLeft="100dp"
                 android:textColor="#000000"/>
         </LinearLayout>
 
@@ -45,13 +47,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:inputType="phone"
-                android:hint="请输入新的手机号" />
+                android:hint="@string/input_new_phone_number" />
 
             <Button
                 android:id="@+id/bt_login_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="确认"
+                android:text="@string/confirm_submit"
                 android:background="#bf0b6eef"
                 android:layout_alignLeft="@id/et_login_number"
                 android:layout_below="@id/et_login_number"
