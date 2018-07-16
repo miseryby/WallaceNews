@@ -22,7 +22,7 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate( R.layout.fragment_me,container,false );
+        View v = inflater.inflate( R.layout.user_style,container,false );
 //        mImageViewLogin =(ImageView) v.findViewById( R.id.btn_lg );
 //        mImageViewLogin.setOnClickListener( new View.OnClickListener() {
 //            @Override

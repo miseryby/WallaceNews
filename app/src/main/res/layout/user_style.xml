@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
-        android:background="#000000">
+        android:background="#13227a">
         <ImageView
             android:layout_width="100dp"
             android:layout_height="80dp"
@@ -36,7 +36,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#000000"
+        android:background="#13227a"
         android:orientation="horizontal">
         <LinearLayout
             style="@style/user_notice_linearlayout">
@@ -85,7 +85,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#000000"
+        android:background="#13227a"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -94,6 +94,7 @@
                 android:src="@mipmap/star"
                 style="@style/user_collect_image"/>
             <TextView
+                android:textColor="#ffffff"
                 style="@style/user_collect_style"
                 android:text="收藏"/>
         </LinearLayout>
@@ -105,6 +106,7 @@
                 android:src="@mipmap/history"
                 style="@style/user_collect_image"/>
             <TextView
+                android:textColor="#ffffff"
                 android:text="历史"
                 style="@style/user_collect_style"/>
         </LinearLayout>
@@ -115,6 +117,7 @@
                 android:src="@mipmap/night"
                 style="@style/user_collect_image"/>
             <TextView
+                android:textColor="#ffffff"
                 android:text="夜间"
                 style="@style/user_collect_style"/>
         </LinearLayout>
@@ -125,7 +128,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c1c2c2"
+        android:background="#e6e6e6"
         android:orientation="vertical">
 
         <LinearLayout
@@ -134,6 +137,7 @@
             <TextView
                style="@style/user_select_textview"
                 android:text="登录注册" />
+
             <ImageView
                 style="@style/user_select_imageview"
                 android:src="@mipmap/up" />
