@@ -1,6 +1,7 @@
 package com.example.wallace.wallacenews.yang.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,8 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.peng.Util.NetworkNewsUtil;
 import com.example.wallace.wallacenews.peng.beans.Data;
@@ -77,17 +81,28 @@ public class NewsListFragment extends android.support.v4.app.Fragment{
     private class NewsHolder extends RecyclerView.ViewHolder{
         private TextView mTextView1;
         private TextView mTextView2;
+        private ImageView mImageView;
         private  Data news;
         public NewsHolder(LayoutInflater inflater,ViewGroup parent) {
 
             super( inflater.inflate( R.layout.list_item_news,parent,false ) );
             mTextView1 =(TextView) itemView.findViewById( R.id.news_title );
             mTextView2 =(TextView) itemView.findViewById( R.id.new_detail );
+            mImageView =(ImageView) itemView.findViewById( R.id.imageView );
         }
         public void bind(Data news){
             this.news =news;
             mTextView1.setText( news.getTitle() );
             mTextView2.setText( news.getDate().toString() );
+            mTextView1.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  //nothing yet ,indent to open web
+                }
+            } );
+            String url = news.getUrl();
+            String pic =news.getThumbnail_pic_s();
+            Glide.with(NewsListFragment.this).load(pic).into(mImageView);
         }
     }
     private  class  NewsAdapter extends RecyclerView.Adapter<NewsHolder>{

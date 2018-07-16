@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f9f8f8">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="60dp">
+
+        <TextView
+            android:id="@+id/news_detail"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+            android:textSize="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/news_detail"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/news_detail_textstyle"
+                android:text="置顶"
+                android:textColor="#f40808"/>
+            <TextView
+                style="@style/news_detail_textstyle"
+                android:text="新华网"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+               style="@style/news_detail_textstyle"
+                android:text="20评论"
+                android:layout_marginLeft="15dp" />
+            <TextView
+               style="@style/news_detail_textstyle"
+                android:text="刚刚"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/return_l"
+                android:layout_marginLeft="80dp"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

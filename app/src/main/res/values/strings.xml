@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">WallaceNews</string>
+    <string name="phone_fast_login">手机号快捷登录</string>
+    <string name="input_phone_number">请输入手机号</string>
+    <string name="next">下一步</string>
+    <string name="set_password">设置密码</string>
+    <string name="input_password">输入密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="password_tip">密码长度8-32位，须包含数字、符号、字母至少两种以上元素</string>
+    <string name="confirm_submit">确认提交</string>
 </resources>
