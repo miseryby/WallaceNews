@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <ImageButton
+            android:id="@+id/ib_login_phone_fastlogin"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/return_l_b"
+            android:background="@color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/phone_fast_login"
+            android:textSize="@dimen/toolbar_textSize"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_phone_fastlogin"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/gray"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="@dimen/phone_fastlogin_margintop"
+            android:layout_marginRight="@dimen/phone_fastlogin_margintop"
+            android:hint="@string/input_phone_number"
+            android:textSize="@dimen/toolbar_textSize"
+            android:inputType="phone"/>
+        <Button
+            android:id="@+id/bt_phone_fastlogin"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorAccent"
+            android:text="@string/next"
+            android:textSize="@dimen/toolbar_textSize"
+            android:layout_marginRight="@dimen/phone_fastlogin_margintop"
+            android:layout_marginLeft="@dimen/phone_fastlogin_margintop"/>
+    </LinearLayout>
+
+</LinearLayout>
