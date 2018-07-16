@@ -1,5 +1,6 @@
 package com.example.wallace.wallacenews.yang.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,14 +24,15 @@ import java.util.List;
 
 public class NewsListFragment extends android.support.v4.app.Fragment{
 
-
+    @SuppressLint("HandlerLeak")
     Handler handler = new Handler(){
-        @Override
+                @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mRecyclerView.setAdapter(new NewsAdapter(NetworkNewsUtil.GetTopNewsFromNetwork()));
+
         }
     };
+
     List<Data> mDataList =new ArrayList<>(  );
     private RecyclerView mRecyclerView;
     private NewsAdapter mNewsAdapter;
@@ -46,19 +48,30 @@ public class NewsListFragment extends android.support.v4.app.Fragment{
         View v = inflater.inflate( R.layout.fragment_item,container,false );
         mRecyclerView =(RecyclerView) v.findViewById( R.id.rcy );
         mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+               mDataList= NetworkNewsUtil.GetTopNewsFromNetwork(  handler);
+               int i = mDataList.size();
+                mNewsAdapter =new NewsAdapter( mDataList );
 
-        handler.sendEmptyMessage( 0 );
+            }
+        } ).start();
+        mRecyclerView.setAdapter( mNewsAdapter );
+//        updateUI();
         return  v;
     }
 
     private void updateUI() {
 
 //       NewsLab newsLab =NewsLab.get( getActivity()  );
-//       List<News> newsList =newsLab.getNews();
+//       List<News> newsList =new ArrayList<>(  );
 
-//        mDataList = NetworkNewsUtil.GetTopNewsFromNetwork();
-//        mNewsAdapter =new NewsAdapter( mDataList );
-//        mRecyclerView.setAdapter( mNewsAdapter );
+        while (mDataList.size() ==0){
+            mDataList =NetworkNewsUtil.GetTopNewsFromNetwork( handler );
+        }
+        mNewsAdapter =new NewsAdapter( mDataList );
+        mRecyclerView.setAdapter( mNewsAdapter );
     }
 
     private class NewsHolder extends RecyclerView.ViewHolder{
