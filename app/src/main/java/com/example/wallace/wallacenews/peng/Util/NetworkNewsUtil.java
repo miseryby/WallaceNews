@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 public class NetworkNewsUtil {
+
+
     private static String APPCODE = "APPCODE 1c47f03bc4324e638195a51a124ab4c1";
     private static String baseUrl = "http://toutiao-ali.juheapi.com/toutiao/index?type=";
 
@@ -94,7 +96,6 @@ public class NetworkNewsUtil {
                     datas.add(data);
                     handler.sendEmptyMessage(0);
                 }
-                return datas;
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
