@@ -12,6 +12,7 @@ import com.example.wallace.wallacenews.R;
 
 public class NewsMeFragment extends android.support.v4.app.Fragment {
     private  ImageView mImageViewLogin;
+    int i =0;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );

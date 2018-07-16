@@ -45,6 +45,7 @@
         tools:text="Time" />
 
     <Button
+        android:background="@drawable/btn_bottom_confirm_bg"
         android:id="@+id/button"
         android:layout_width="69dp"
         android:layout_height="36dp"
@@ -53,6 +54,7 @@
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#ffffff"
         tools:text="关注" />
 
     <TextView

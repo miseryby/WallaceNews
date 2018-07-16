@@ -1,6 +1,7 @@
 package com.example.wallace.wallacenews.peng.Util;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.wallace.wallacenews.peng.beans.Data;
 import org.json.JSONArray;
@@ -15,9 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 public class NetworkNewsUtil {
-
-
-    private static String APPCODE = "APPCODE 1c47f03bc4324e638195a51a124ab4c1";
+    private static String APPCODE = "APPCODE 6e62dc607a0c4c62b4c970fa13fa5c68";
     private static String baseUrl = "http://toutiao-ali.juheapi.com/toutiao/index?type=";
 
     private static String newsType_top = "top";
@@ -70,13 +69,14 @@ public class NetworkNewsUtil {
 
         List<Data> datas = new ArrayList<>();
         try {
-            URL url = new URL(baseUrl+newstype);
+            URL url = new URL("http://toutiao-ali.juheapi.com/toutiao/index?type=top");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(5000);
             conn.setRequestProperty("Authorization", APPCODE);
 
-            int code = conn.getResponseCode();
+           int code =conn.getResponseCode();
+            Log.i("maininfo",String.valueOf(code));
             if (code == 200) {
                 //代表请求成功数据
                 InputStream is = conn.getInputStream();
