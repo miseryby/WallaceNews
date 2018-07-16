@@ -4,9 +4,19 @@ import android.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.wallace.wallacenews.R;
+import com.viewpagerindicator.IconPagerAdapter;
+
 import java.util.List;
 
-public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+public class MyFragmentPagerAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
+    private static final String[] CONTENT = new String[] { "Calendar", "Camera", "Alarms", "Location" };
+    private static final int[] ICONS = new int[] {
+            R.mipmap.admire,
+            R.mipmap.admire,
+            R.mipmap.admire,
+            R.mipmap.admire
+    };
     private android.support.v4.app.FragmentManager fragmetnmanager;  //创建FragmentManager
     private List<android.support.v4.app.Fragment> listfragment; //创建一个List<Fragment>
     public MyFragmentPagerAdapter(android.support.v4.app.FragmentManager fm,List<android.support.v4.app.Fragment> list) {
@@ -21,7 +31,17 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
+    public int getIconResId(int index) {
+       return ICONS[index];
+    }
+
+    @Override
     public int getCount() {
         return listfragment.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return CONTENT[position % CONTENT.length].toUpperCase();
     }
 }
