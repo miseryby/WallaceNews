@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="user_letter_margintop">5dp</dimen>
+    <dimen name="user_imager_magintop">5dp</dimen>
+    <dimen name="imager_width">20dp</dimen>
+    <dimen name="imager_heignt">20dp</dimen>
+    <dimen name="user_select_height">30dp</dimen>
+    <dimen name="user_select_margin">3dp</dimen>
+    
+    <style name="user_notice_style">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#fcfdfc</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="user_notice_linearlayout">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="user_notice_image">
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:background">#fcfdfc</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="user_collect_style">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="user_collect_image">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="user_bottom_linearlayout">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="user_bottom_imageView">
+        <item name="android:layout_width">26dp</item>
+        <item name="android:layout_height">26dp</item>
+    </style>
+
+    <style name="user_bottom_textView">
+        <item name="android:textColor">#aaaaaa</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+    <style name="user_select_layoustyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">#fcfdfc</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+    
+    <style name="user_select_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="user_select_imageview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">250dp</item>
+
+    </style>
+</resources>
