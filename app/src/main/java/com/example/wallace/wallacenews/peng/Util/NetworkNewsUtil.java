@@ -19,16 +19,16 @@ public class NetworkNewsUtil {
     private static String APPCODE = "APPCODE 6e62dc607a0c4c62b4c970fa13fa5c68";
     private static String baseUrl = "http://toutiao-ali.juheapi.com/toutiao/index?type=";
 
-    private static String newsType_top = "top";
-    private static String newsType_shehui = "shehui";
-    private static String newsType_guonei = "guonei";
-    private static String newsType_guoji = "guoji";
-    private static String newsType_yule = "yule";
-    private static String newsType_tiyu = "tiyu";
-    private static String newsType_junshi = "junshi";
-    private static String newsType_keji = "keji";
-    private static String newsType_caijing = "caijing";
-    private static String newsType_shishang = "shishang";
+    private static String newsType_top = "http://toutiao-ali.juheapi.com/toutiao/index?type=top";
+    private static String newsType_shehui = "http://toutiao-ali.juheapi.com/toutiao/index?type=shehui";
+    private static String newsType_guonei = "http://toutiao-ali.juheapi.com/toutiao/index?type=guonei";
+    private static String newsType_guoji = "http://toutiao-ali.juheapi.com/toutiao/index?type=guoji";
+    private static String newsType_yule = "http://toutiao-ali.juheapi.com/toutiao/index?type=yule";
+    private static String newsType_tiyu = "http://toutiao-ali.juheapi.com/toutiao/index?type=tiyu";
+    private static String newsType_junshi = "http://toutiao-ali.juheapi.com/toutiao/index?type=junshi";
+    private static String newsType_keji = "http://toutiao-ali.juheapi.com/toutiao/index?type=keji";
+    private static String newsType_caijing = "http://toutiao-ali.juheapi.com/toutiao/index?type=caijing";
+    private static String newsType_shishang = "http://toutiao-ali.juheapi.com/toutiao/index?type=shishang";
 
     public static List<Data> GetTopNewsFromNetwork(Handler handler)
     {
@@ -69,7 +69,7 @@ public class NetworkNewsUtil {
 
         List<Data> datas = new ArrayList<>();
         try {
-            URL url = new URL("http://toutiao-ali.juheapi.com/toutiao/index?type=top");
+            URL url = new URL(newstype);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(5000);
