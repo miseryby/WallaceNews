@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.yang.adapter.MyFragmentPagerAdapter;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -33,8 +36,8 @@ public class NewsSortFragement extends android.support.v4.app.Fragment {
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate( R.layout.fragment_item,container,false );
-        android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+        final View v = inflater.inflate( R.layout.fragment_item,container,false );
+        final android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
         listfragment.clear();
         addNewsSortFragment();
 
@@ -45,6 +48,29 @@ public class NewsSortFragement extends android.support.v4.app.Fragment {
         vp2.setAdapter( mAdapter );
         TabPageIndicator indicator = (TabPageIndicator)v.findViewById(R.id.indicator);
         indicator.setViewPager(vp2);
+        RefreshLayout refreshLayout = (RefreshLayout)v.findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                listfragment.clear();
+                addNewsSortFragment();
+
+                mAdapter = new MyFragmentPagerAdapter( fragmentManager, listfragment );
+
+                vp2 =(ViewPager) v.findViewById( R.id.vp2 );
+
+                vp2.setAdapter( mAdapter );
+                TabPageIndicator indicator = (TabPageIndicator)v.findViewById(R.id.indicator);
+                indicator.setViewPager(vp2);
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+            }
+        });
         return v;
 
     }

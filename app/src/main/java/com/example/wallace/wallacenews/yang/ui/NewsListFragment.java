@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
@@ -40,6 +41,7 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage( msg );
             mNewsAdapter = new NewsAdapter( mDataList );
+
             mRecyclerView.setAdapter( mNewsAdapter );
         }
     };
@@ -125,17 +127,23 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
             mImageView = (ImageView) itemView.findViewById( R.id.imageView );
         }
 
-        public void bind(Data news) {
+        public void bind(final Data news) {
             this.news = news;
             mTextView1.setText( news.getTitle() );
             mTextView2.setText( news.getDate().toString() );
+            final String url = news.getUrl();
             mTextView1.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //nothing yet ,indent to open web
+
+                    Toast.makeText(getActivity(), news.getTitle(), Toast.LENGTH_LONG).show();
+                    Intent intent =new Intent(getActivity(),WebNews.class);
+                    intent.putExtra( "URL", url);
+
+                    startActivity(intent);
                 }
             } );
-            String url = news.getUrl();
+
             String pic = news.getThumbnail_pic_s();
             Glide.with( NewsListFragment.this ).load( pic ).into( mImageView );
         }
@@ -155,9 +163,10 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
         }
 
         @Override
-        public void onBindViewHolder(NewsHolder holder, int position) {
+        public void onBindViewHolder(NewsHolder holder, final int position) {
             Data news = mList.get( position );
             holder.bind( news );
+
         }
 
         @Override
@@ -166,6 +175,18 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
         }
 
     }
-}
+
+    public static interface ItemClickListener {
+        void onItemClick(View view);
+        void onImageClick(View view);
+    }
+
+    public ItemClickListener mListener;
+
+    public void setOnItemClickListener(ItemClickListener listener) {
+        this.mListener = listener;
+    }
+    }
+
 
 

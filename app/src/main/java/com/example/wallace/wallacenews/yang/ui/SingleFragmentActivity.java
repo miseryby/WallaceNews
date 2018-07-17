@@ -65,7 +65,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
                 }
                 if (checkedId == mRadioButton3.getId()) {
-                    Toast.makeText( SingleFragmentActivity.this, "萨法", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( SingleFragmentActivity.this, "你点击了我的", Toast.LENGTH_SHORT ).show();
                     vp.setCurrentItem( 2,false );
                 }
             }
