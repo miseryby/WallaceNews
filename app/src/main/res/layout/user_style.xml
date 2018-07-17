@@ -47,7 +47,7 @@
                 android:layout_marginTop="@dimen/user_letter_margintop"/>
             <TextView
                 style="@style/user_notice_style"
-                android:text="关注" />
+                android:text="@string/notice" />
         </LinearLayout>
 
         <ImageView
@@ -62,7 +62,7 @@
                 android:layout_marginTop="@dimen/user_letter_margintop"/>
             <TextView
                 style="@style/user_notice_style"
-                android:text="粉丝"/>
+                android:text="@string/fan"/>
         </LinearLayout>
 
         <ImageView
@@ -77,7 +77,7 @@
                 android:layout_marginTop="@dimen/user_letter_margintop"/>
             <TextView
                style="@style/user_notice_style"
-                android:text="7天访客"/>
+                android:text="@string/guest"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -96,7 +96,7 @@
             <TextView
                 android:textColor="#ffffff"
                 style="@style/user_collect_style"
-                android:text="收藏"/>
+                android:text="@string/collect"/>
         </LinearLayout>
 
 
@@ -107,7 +107,7 @@
                 style="@style/user_collect_image"/>
             <TextView
                 android:textColor="#ffffff"
-                android:text="历史"
+                android:text="@string/history"
                 style="@style/user_collect_style"/>
         </LinearLayout>
 
@@ -118,7 +118,7 @@
                 style="@style/user_collect_image"/>
             <TextView
                 android:textColor="#ffffff"
-                android:text="夜间"
+                android:text="@string/night"
                 style="@style/user_collect_style"/>
         </LinearLayout>
     </LinearLayout>
@@ -136,7 +136,7 @@
             android:layout_marginTop="5dp">
             <TextView
                style="@style/user_select_textview"
-                android:text="登录注册" />
+                android:text="@string/login_register" />
 
             <ImageView
                 style="@style/user_select_imageview"
@@ -149,7 +149,7 @@
             android:layout_marginTop="10dp">
             <TextView
                 style="@style/user_select_textview"
-                android:text="手机号"
+                android:text="@string/phone_number"
                 />
             <ImageView
                 style="@style/user_select_imageview"
@@ -161,7 +161,7 @@
             style="@style/user_select_layoustyle">
             <TextView
                style="@style/user_select_textview"
-                android:text="用户名"
+                android:text="@string/username"
                 />
             <ImageView
                 style="@style/user_select_imageview"
@@ -173,7 +173,7 @@
             style="@style/user_select_layoustyle">
             <TextView
                 style="@style/user_select_textview"
-                android:text="系统设置"
+                android:text="@string/system_set"
                 />
 
             <ImageView
@@ -186,7 +186,7 @@
             android:layout_marginTop="10dp">
             <TextView
                 style="@style/user_select_textview"
-                android:text="缓存清理" />
+                android:text="@string/cache_clear" />
             <ImageView
                 style="@style/user_select_imageview"
                 android:src="@mipmap/up" />
@@ -196,7 +196,7 @@
             style="@style/user_select_layoustyle">
             <TextView
                 style="@style/user_select_textview"
-                android:text="退出登录"
+                android:text="@string/exit_login"
               />
 
             <ImageView
