@@ -40,20 +40,20 @@ public class NewsSortFragement extends android.support.v4.app.Fragment {
 
         mAdapter = new MyFragmentPagerAdapter( fragmentManager, listfragment );
 
-//        vp2 =(ViewPager) v.findViewById( R.id.vp2 );
-//
-//        vp2.setAdapter( mAdapter );
-//        TabPageIndicator indicator = (TabPageIndicator)v.findViewById(R.id.indicator);
-//        indicator.setViewPager(vp2);
+        vp2 =(ViewPager) v.findViewById( R.id.vp2 );
+
+        vp2.setAdapter( mAdapter );
+        TabPageIndicator indicator = (TabPageIndicator)v.findViewById(R.id.indicator);
+        indicator.setViewPager(vp2);
         return v;
 
     }
     private void addNewsSortFragment(){
-//        fm1 =new NewsListFragment(1);
-//        fm2 =new NewsListFragment(2);
-//        fm3 =new NewsListFragment(3);
-//        fm4 =new NewsListFragment(4);
-//        fm5 =new NewsListFragment(5);
+        fm1 =new NewsListFragment(1);
+        fm2 =new NewsListFragment(2);
+        fm3 =new NewsListFragment(3);
+        fm4 =new NewsListFragment(4);
+        fm5 =new NewsListFragment(5);
 
         listfragment.add( fm1 );
         listfragment.add( fm2);
