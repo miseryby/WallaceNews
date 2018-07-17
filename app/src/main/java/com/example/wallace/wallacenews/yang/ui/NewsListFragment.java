@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.peng.Util.NetworkNewsUtil;
 import com.example.wallace.wallacenews.peng.beans.Data;
+import com.example.wallace.wallacenews.yang.adapter.MyFragmentPagerAdapter;
 import com.example.wallace.wallacenews.yang.test.News;
 import com.example.wallace.wallacenews.yang.test.NewsLab;
 
@@ -26,44 +30,71 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class NewsListFragment extends android.support.v4.app.Fragment{
+
+@SuppressLint("ValidFragment")
+public class NewsListFragment extends android.support.v4.app.Fragment {
 
     @SuppressLint("HandlerLeak")
-    Handler handler = new Handler(){
-                @Override
+    Handler handler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
+            super.handleMessage( msg );
+            mNewsAdapter = new NewsAdapter( mDataList );
+            mRecyclerView.setAdapter( mNewsAdapter );
         }
     };
+    private int mNewsSort;
 
-    List<Data> mDataList =new ArrayList<>(  );
+    @SuppressLint("ValidFragment")
+    public NewsListFragment(int newsSort) {
+        mNewsSort = newsSort;
+    }
+
+    List<Data> mDataList = new ArrayList<>();
+    private List<android.support.v4.app.Fragment> listfragment = new ArrayList<>(); //创建一个List<Fragment>
+
     private RecyclerView mRecyclerView;
     private NewsAdapter mNewsAdapter;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
 
     }
 
+    //    public static NewsListFragment newInstance(String sort){
+//        NewsListFragment newsListFragment =new NewsListFragment();
+//        return newsListFragment;
+//    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate( R.layout.fragment_item,container,false );
-        mRecyclerView =(RecyclerView) v.findViewById( R.id.rcy );
-        mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        View v = inflater.inflate( R.layout.fragment_sort, container, false );
         new Thread( new Runnable() {
             @Override
             public void run() {
-               mDataList= NetworkNewsUtil.GetTopNewsFromNetwork(  handler);
-               int i = mDataList.size();
-                mNewsAdapter =new NewsAdapter( mDataList );
+                switch (mNewsSort){
+                    case 0:mDataList = NetworkNewsUtil.GetTopNewsFromNetwork( handler );
+                    case 1:mDataList = NetworkNewsUtil.GetShehuiNewsFromNetwork( handler );
+                    case 2:mDataList = NetworkNewsUtil.GetGuoneiNewsFromNetwork( handler );
+                    case 3:mDataList = NetworkNewsUtil.GetGuojiNewsFromNetwork( handler );
+                    case 4:mDataList = NetworkNewsUtil.GetTopNewsFromNetwork( handler );
+                    case 5:mDataList = NetworkNewsUtil.GetTopNewsFromNetwork( handler );
+                    case 6:mDataList = NetworkNewsUtil.GetTopNewsFromNetwork( handler );
+                }
 
+                int i = mDataList.size();
+                handler.sendEmptyMessage( 0 );
             }
         } ).start();
-        mRecyclerView.setAdapter( mNewsAdapter );
+
+        mRecyclerView = (RecyclerView) v.findViewById( R.id.rcy );
+
+        mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+
 //        updateUI();
-        return  v;
+
+        return v;
     }
 
     private void updateUI() {
@@ -71,55 +102,61 @@ public class NewsListFragment extends android.support.v4.app.Fragment{
 //       NewsLab newsLab =NewsLab.get( getActivity()  );
 //       List<News> newsList =new ArrayList<>(  );
 
-        while (mDataList.size() ==0){
-            mDataList =NetworkNewsUtil.GetTopNewsFromNetwork( handler );
+        while (mDataList.size() == 0) {
+            mDataList = NetworkNewsUtil.GetTopNewsFromNetwork( handler );
         }
-        mNewsAdapter =new NewsAdapter( mDataList );
+        mNewsAdapter = new NewsAdapter( mDataList );
         mRecyclerView.setAdapter( mNewsAdapter );
     }
 
-    private class NewsHolder extends RecyclerView.ViewHolder{
+    private class NewsHolder extends RecyclerView.ViewHolder {
         private TextView mTextView1;
         private TextView mTextView2;
         private ImageView mImageView;
-        private  Data news;
-        public NewsHolder(LayoutInflater inflater,ViewGroup parent) {
 
-            super( inflater.inflate( R.layout.list_item_news,parent,false ) );
-            mTextView1 =(TextView) itemView.findViewById( R.id.news_title );
-            mTextView2 =(TextView) itemView.findViewById( R.id.new_detail );
-            mImageView =(ImageView) itemView.findViewById( R.id.imageView );
+        private Data news;
+
+        public NewsHolder(LayoutInflater inflater, ViewGroup parent) {
+
+            super( inflater.inflate( R.layout.list_item_news, parent, false ) );
+
+            mTextView1 = (TextView) itemView.findViewById( R.id.news_title );
+            mTextView2 = (TextView) itemView.findViewById( R.id.new_detail );
+            mImageView = (ImageView) itemView.findViewById( R.id.imageView );
         }
-        public void bind(Data news){
-            this.news =news;
+
+        public void bind(Data news) {
+            this.news = news;
             mTextView1.setText( news.getTitle() );
             mTextView2.setText( news.getDate().toString() );
             mTextView1.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  //nothing yet ,indent to open web
+                    //nothing yet ,indent to open web
                 }
             } );
             String url = news.getUrl();
-            String pic =news.getThumbnail_pic_s();
-            Glide.with(NewsListFragment.this).load(pic).into(mImageView);
+            String pic = news.getThumbnail_pic_s();
+            Glide.with( NewsListFragment.this ).load( pic ).into( mImageView );
         }
     }
-    private  class  NewsAdapter extends RecyclerView.Adapter<NewsHolder>{
-        List<Data> mList =new ArrayList<>(  );
-        public NewsAdapter(List<Data> news){
+
+    private class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
+        List<Data> mList = new ArrayList<>();
+
+        public NewsAdapter(List<Data> news) {
             mList = news;
         }
+
         @Override
         public NewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from( getActivity() );
-
-            return new NewsHolder( layoutInflater,parent );
+            return new NewsHolder( layoutInflater, parent );
         }
 
         @Override
         public void onBindViewHolder(NewsHolder holder, int position) {
-            Data news =mList.get( position );
+            Data news = mList.get( position );
             holder.bind( news );
         }
 
@@ -128,7 +165,7 @@ public class NewsListFragment extends android.support.v4.app.Fragment{
             return mList.size();
         }
 
-        }
     }
+}
 
 

@@ -10,12 +10,12 @@ import com.viewpagerindicator.IconPagerAdapter;
 import java.util.List;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
-    private static final String[] CONTENT = new String[] { "Calendar", "Camera", "Alarms", "Location" };
+    private static final String[] CONTENT = new String[] { "头条", "社会", "国内", "国际" };
     private static final int[] ICONS = new int[] {
-            R.mipmap.admire,
-            R.mipmap.admire,
-            R.mipmap.admire,
-            R.mipmap.admire
+            R.mipmap.top,
+            R.mipmap.social2,
+            R.mipmap.china,
+            R.mipmap.internation
     };
     private android.support.v4.app.FragmentManager fragmetnmanager;  //创建FragmentManager
     private List<android.support.v4.app.Fragment> listfragment; //创建一个List<Fragment>
