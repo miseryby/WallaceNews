@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">WallaceNews</string>
+    <string name="phone_fast_login">手机号快捷登录</string>
+    <string name="input_phone_number">请输入手机号</string>
+    <string name="next">下一步</string>
+    <string name="set_password">设置密码</string>
+    <string name="input_password">输入密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="password_tip">密码长度8-32位，须包含数字、符号、字母至少两种以上元素</string>
+    <string name="confirm_submit">确认</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="username_and">用户名/邮箱/手机号</string>
+    <string name="loginpassword">登录密码</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="notice">关注</string>
+    <string name="fan">粉丝</string>
+    <string name="guest">7天访客</string>
+    <string name="collect">收藏</string>
+    <string name="history">历史</string>
+    <string name="night">夜间</string>
+    <string name="login_register">登录注册</string>
+    <string name="phone_number">手机号</string>
+    <string name="username">用户名</string>
+    <string name="system_set">系统设置</string>
+    <string name="exit_login">退出登录</string>
+    <string name="cache_clear">缓存清理</string>
+    <string name="modify_phone_number">修改手机号</string>
+    <string name="input_new_phone_number">输入新的手机号</string>
 </resources>

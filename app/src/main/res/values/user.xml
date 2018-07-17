@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="user_letter_margintop">5dp</dimen>
-    <dimen name="user_imager_magintop">5dp</dimen>
-    <dimen name="imager_width">20dp</dimen>
-    <dimen name="imager_heignt">20dp</dimen>
-    <dimen name="user_select_height">30dp</dimen>
-    <dimen name="user_select_margin">3dp</dimen>
+
     
     <style name="user_notice_style">
         <item name="android:gravity">center</item>
