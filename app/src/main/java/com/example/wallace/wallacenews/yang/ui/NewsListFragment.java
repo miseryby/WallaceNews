@@ -142,21 +142,21 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
             mTextView1.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mDataListH.add( news );
-
-                    try {
-                        s = SerializeUtils.serialize(mDataList);
-                        if (cache.checkByKey("F"+title)) {
-                            cache.updateValue("F"+title, s);
-                        }
-                        else {
-                            cache.insert("F"+title, s);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
+//                    mDataListH.add( news );
+//
+//                    try {
+//                        s = SerializeUtils.serialize(mDataList);
+//                        if (cache.checkByKey("F"+title)) {
+//                            cache.updateValue("F"+title, s);
+//                        }
+//                        else {
+//                            cache.insert("F"+title, s);
+//                        }
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
 
                     Toast.makeText(getActivity(), news.getTitle(), Toast.LENGTH_LONG).show();
                     Intent intent =new Intent(getActivity(),WebNews.class);

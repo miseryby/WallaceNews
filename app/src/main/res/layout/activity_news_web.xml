@@ -18,7 +18,7 @@
     android:layout_weight="1">
     <Button
         android:id="@+id/web_collect_btn"
-        android:layout_gravity="right"
+        android:layout_gravity="center_horizontal"
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:layout_margin="5dp"
