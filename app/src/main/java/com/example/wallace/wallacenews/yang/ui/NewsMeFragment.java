@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wallace.wallacenews.R;
+import com.example.wallace.wallacenews.lei.ui.User_login;
 
 public class NewsMeFragment extends android.support.v4.app.Fragment {
     private LinearLayout ll_login_register;
