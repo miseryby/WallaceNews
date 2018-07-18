@@ -89,6 +89,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/col"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:src="@mipmap/star"
@@ -101,6 +102,7 @@
 
 
         <LinearLayout
+            android:id="@+id/his"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:src="@mipmap/history"

@@ -19,6 +19,8 @@ import com.example.wallace.wallacenews.lei.ui.User_login;
 
 public class NewsMeFragment extends android.support.v4.app.Fragment {
     private LinearLayout ll_login_register;
+    private ImageView ll_login_his;
+    private ImageView ll_login_col;
     private LinearLayout ll_phone_number;
     private LinearLayout ll_user_name;
     private LinearLayout ll_system_setting;
@@ -43,8 +45,23 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
                 startActivity(mIntent);
             }
         });
+        ll_login_his=(ImageView) v.findViewById(R.id.his);
+        ll_login_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(getActivity(), HistoryActivity.class);
+                startActivity(mIntent);
+            }
+        });
+        ll_login_col=(ImageView) v.findViewById(R.id.col);
+        ll_login_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(getActivity(), CollectActivity.class);
+                startActivity(mIntent);
+            }
+        });
         return v;
     }
-
 
 }
