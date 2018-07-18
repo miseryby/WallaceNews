@@ -27,6 +27,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         android:theme="@style/AppTheme"
         android:name=".peng.Global.GlobalVar">
         <provider
@@ -46,7 +47,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <activity android:name=".yang.ui.WebNews"/>
+        <activity android:name=".yang.ui.WebNews"/>
+        <activity android:name=".yang.ui.MeActivity" />
+        <activity android:name=".lei.ui.User_login"/>
+        <activity android:name=".lei.ui.Set_password"/>
+        <activity android:name=".lei.ui.Phone_number_fastlogin"/>
     </application>
 
 </manifest>

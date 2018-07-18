@@ -89,6 +89,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll_user_login_collect"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:src="@mipmap/star"
@@ -101,6 +102,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_user_login_history"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:src="@mipmap/history"
@@ -112,6 +114,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_user_login_night"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:src="@mipmap/night"
@@ -147,6 +150,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_user_login_phone"
             style="@style/user_select_layoustyle"
             android:layout_marginTop="10dp">
             <TextView
@@ -160,6 +164,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_user_login_username"
             style="@style/user_select_layoustyle">
             <TextView
                style="@style/user_select_textview"
@@ -172,6 +177,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_user_login_setting"
             style="@style/user_select_layoustyle">
             <TextView
                 style="@style/user_select_textview"
@@ -184,6 +190,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_user_login_caheclear"
             style="@style/user_select_layoustyle"
             android:layout_marginTop="10dp">
             <TextView
@@ -195,6 +202,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_user_login_exitlogin"
             style="@style/user_select_layoustyle">
             <TextView
                 style="@style/user_select_textview"
