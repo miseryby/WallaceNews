@@ -34,7 +34,7 @@ public class GlobalVar extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        setLoginStatus(false);
         handler = new Handler(){
             public void handleMessage(Message msg) {
                 if (msg.what == 1) {
@@ -48,7 +48,6 @@ public class GlobalVar extends Application {
         };
         UserInfoDAO.findUser(""+12345678,GlobalVar.this,handler);
         //如果缓存文件存在，就从缓存中加载用户数据
-
     }
     public boolean getLoginStatus() {//调用此函数可以获得name的值.
         return loginStatus;

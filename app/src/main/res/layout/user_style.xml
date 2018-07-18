@@ -2,136 +2,235 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:theme="@android:style/Theme.NoTitleBar">
 
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_user_detail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="#13227a">-->
+        <!--<ImageView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:src="@mipmap/steam2"-->
+            <!--android:layout_gravity="center"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="华莱士"-->
+            <!--android:textColor="#fcfdfcfc"-->
+            <!--android:textSize="40dp"-->
+            <!--android:gravity="left|center_vertical"/>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/im_user_up"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:src="@mipmap/up"-->
+            <!--android:layout_marginLeft="120dp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:background="#13227a"-->
+        <!--android:orientation="horizontal">-->
+        <!--<LinearLayout-->
+            <!--style="@style/user_notice_linearlayout">-->
+            <!--<TextView-->
+                <!--style="@style/user_notice_style"-->
+                <!--android:id="@+id/tv_User_noticeNumber"-->
+                <!--android:text="0"-->
+                <!--android:layout_marginTop="@dimen/user_letter_margintop"/>-->
+            <!--<TextView-->
+                <!--style="@style/user_notice_style"-->
+                <!--android:text="@string/notice" />-->
+        <!--</LinearLayout>-->
+
+        <!--<ImageView-->
+            <!--style="@style/user_notice_image"/>-->
+
+        <!--<LinearLayout-->
+            <!--style="@style/user_notice_linearlayout">-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_User_fanNumber"-->
+               <!--style="@style/user_notice_style"-->
+                <!--android:text="0"-->
+                <!--android:layout_marginTop="@dimen/user_letter_margintop"/>-->
+            <!--<TextView-->
+                <!--style="@style/user_notice_style"-->
+                <!--android:text="@string/fan"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<ImageView-->
+        <!--style="@style/user_notice_image"/>-->
+
+        <!--<LinearLayout-->
+            <!--style="@style/user_notice_linearlayout">-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_User_guestNumber"-->
+                <!--style="@style/user_notice_style"-->
+                <!--android:text="0"-->
+                <!--android:layout_marginTop="@dimen/user_letter_margintop"/>-->
+            <!--<TextView-->
+               <!--style="@style/user_notice_style"-->
+                <!--android:text="@string/guest"/>-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:background="#13227a"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+
+            <!--style="@style/user_notice_linearlayout">-->
+            <!--<ImageView-->
+                <!--android:id="@+id/col"-->
+                <!--android:src="@mipmap/star"-->
+                <!--style="@style/user_collect_image"/>-->
+            <!--<TextView-->
+                <!--android:textColor="#ffffff"-->
+                <!--style="@style/user_collect_style"-->
+                <!--android:text="@string/collect"/>-->
+        <!--</LinearLayout>-->
+
+
+        <!--<LinearLayout-->
+            <!--style="@style/user_notice_linearlayout">-->
+            <!--<ImageView-->
+                <!--android:id="@+id/his"-->
+                <!--android:src="@mipmap/history"-->
+                <!--style="@style/user_collect_image"/>-->
+            <!--<TextView-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:text="@string/history"-->
+                <!--style="@style/user_collect_style"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--style="@style/user_notice_linearlayout">-->
+            <!--<ImageView-->
+                <!--android:id="@+id/night"-->
+                <!--android:src="@mipmap/night"-->
+                <!--style="@style/user_collect_image"/>-->
+            <!--<TextView-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:text="@string/night"-->
+                <!--style="@style/user_collect_style"/>-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
     <LinearLayout
-        android:id="@+id/ll_user_detail"
+        android:background="@drawable/myinfo_background"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:background="#13227a">
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/steam2"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="华莱士"
-            android:textColor="#fcfdfcfc"
-            android:textSize="40dp"
-            android:gravity="left|center_vertical"/>
-
-        <ImageView
-            android:id="@+id/im_user_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:src="@mipmap/up"
-            android:layout_marginLeft="120dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#13227a"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
         <LinearLayout
-            style="@style/user_notice_linearlayout">
-            <TextView
-                style="@style/user_notice_style"
-                android:id="@+id/tv_User_noticeNumber"
-                android:text="0"
-                android:layout_marginTop="@dimen/user_letter_margintop"/>
-            <TextView
-                style="@style/user_notice_style"
-                android:text="@string/notice" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/myicon"
+                app:civ_border_color="#000000"
+                app:civ_border_width="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_divider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/myname"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="4"
+                    android:text="第三组五个帅哥"
+                    android:textColor="#cdcdcd"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
         </LinearLayout>
-
-        <ImageView
-            style="@style/user_notice_image"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"></LinearLayout>
 
         <LinearLayout
-            style="@style/user_notice_linearlayout">
-            <TextView
-                android:id="@+id/tv_User_fanNumber"
-               style="@style/user_notice_style"
-                android:text="0"
-                android:layout_marginTop="@dimen/user_letter_margintop"/>
-            <TextView
-                style="@style/user_notice_style"
-                android:text="@string/fan"/>
-        </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent">
 
-        <ImageView
-        style="@style/user_notice_image"/>
-
-        <LinearLayout
-            style="@style/user_notice_linearlayout">
-            <TextView
-                android:id="@+id/tv_User_guestNumber"
-                style="@style/user_notice_style"
-                android:text="0"
-                android:layout_marginTop="@dimen/user_letter_margintop"/>
-            <TextView
-               style="@style/user_notice_style"
-                android:text="@string/guest"/>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#13227a"
-        android:orientation="horizontal">
-
-        <LinearLayout
-
-            style="@style/user_notice_linearlayout">
             <ImageView
+
                 android:id="@+id/col"
-                android:src="@mipmap/star"
-                style="@style/user_collect_image"/>
-            <TextView
-                android:textColor="#ffffff"
-                style="@style/user_collect_style"
-                android:text="@string/collect"/>
-        </LinearLayout>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/star" />
 
-
-        <LinearLayout
-            style="@style/user_notice_linearlayout">
             <ImageView
+
                 android:id="@+id/his"
-                android:src="@mipmap/history"
-                style="@style/user_collect_image"/>
-            <TextView
-                android:textColor="#ffffff"
-                android:text="@string/history"
-                style="@style/user_collect_style"/>
-        </LinearLayout>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/history" />
 
-        <LinearLayout
-            style="@style/user_notice_linearlayout">
-            <ImageView
-                android:id="@+id/night"
-                android:src="@mipmap/night"
-                style="@style/user_collect_image"/>
-            <TextView
-                android:textColor="#ffffff"
-                android:text="@string/night"
-                style="@style/user_collect_style"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></LinearLayout>
     </LinearLayout>
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:background="#e6e6e6"
         android:orientation="vertical">
 
@@ -139,10 +238,12 @@
             android:id="@+id/ll_user_login"
             style="@style/user_select_layoustyle"
             android:layout_marginTop="5dp">
+
             <TextView
 
-               style="@style/user_select_textview"
-                android:text="@string/login_register" />
+                style="@style/user_select_textview"
+                android:text="@string/login_register"
+                android:textColor="@android:color/black" />
 
             <ImageView
                 style="@style/user_select_imageview"
@@ -153,10 +254,11 @@
         <LinearLayout
             style="@style/user_select_layoustyle"
             android:layout_marginTop="10dp">
+
             <TextView
                 style="@style/user_select_textview"
                 android:text="@string/phone_number"
-                />
+                android:textColor="@android:color/black" />
             <ImageView
                 style="@style/user_select_imageview"
                 android:src="@mipmap/up"
@@ -165,10 +267,11 @@
 
         <LinearLayout
             style="@style/user_select_layoustyle">
+
             <TextView
-               style="@style/user_select_textview"
+                style="@style/user_select_textview"
                 android:text="@string/username"
-                />
+                android:textColor="@android:color/black" />
             <ImageView
                 style="@style/user_select_imageview"
                 android:src="@mipmap/up"
@@ -177,10 +280,11 @@
 
         <LinearLayout
             style="@style/user_select_layoustyle">
+
             <TextView
                 style="@style/user_select_textview"
                 android:text="@string/system_set"
-                />
+                android:textColor="@android:color/black" />
 
             <ImageView
                 style="@style/user_select_imageview"
@@ -190,9 +294,11 @@
         <LinearLayout
             style="@style/user_select_layoustyle"
             android:layout_marginTop="10dp">
+
             <TextView
                 style="@style/user_select_textview"
-                android:text="@string/cache_clear" />
+                android:text="@string/cache_clear"
+                android:textColor="@android:color/black" />
             <ImageView
                 style="@style/user_select_imageview"
                 android:src="@mipmap/up" />
@@ -200,10 +306,11 @@
 
         <LinearLayout
             style="@style/user_select_layoustyle">
+
             <TextView
                 style="@style/user_select_textview"
                 android:text="@string/exit_login"
-              />
+                android:textColor="@android:color/black" />
 
             <ImageView
                style="@style/user_select_imageview"
