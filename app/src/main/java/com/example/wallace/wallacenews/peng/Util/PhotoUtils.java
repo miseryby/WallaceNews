@@ -92,7 +92,21 @@ public class PhotoUtils {
             return null;
         }
     }
-
+    //用URI获取文件的路径
+    public static String getRealPathFromURI(Context context, Uri contentURI) {
+        String result;
+        Cursor cursor = context.getContentResolver().query(contentURI,
+                new String[]{MediaStore.Images.ImageColumns.DATA},//
+                null, null, null);
+        if (cursor == null) result = contentURI.getPath();
+        else {
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(index);
+            cursor.close();
+        }
+        return result;
+    }
     /**
      * @param context 上下文对象
      * @param uri     当前相册照片的Uri

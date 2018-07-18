@@ -43,12 +43,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.datatype.BmobPointer;
+
 import static android.app.Activity.RESULT_OK;
 
 public class DynamicListFragment extends  android.support.v4.app.Fragment {
     private RecyclerView mRecyclerView;
     private DynamicAdapter mDynamicAdapter;
     private List<Bitmap> bmpList;
+    private  List<String> bmpPaths;
 
     private static final String TAG = "PhotoImageFragment";
 
@@ -107,6 +110,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         hotInfoDAO.connectDB(mContext);
 
         bmpList = new ArrayList<>();
+        bmpPaths = new ArrayList<>();
         bt_gallary = (ImageView) v.findViewById(R.id.imageView5);
         bt_takepic = (ImageView) v.findViewById(R.id.imageView3);
         bt_release = (Button)v.findViewById(R.id.button2) ;
@@ -163,12 +167,17 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             else {
                 HotInfo ht = new HotInfo();
                 ht.setHot(mhText.getText().toString());//加入文本
-//                ht.setHotIcon(  );
-                //加入图片
-                //发送到数据库
+                if(bmpPaths.size()>0)
+                {ht.setHotIcon(hotInfoDAO.imgPath2File(bmpPaths.get(0)));}//加入图片
+                ht.setUserId(globalVar.nowUser.getUserId());
+                hotInfoDAO.publishHot(ht, mContext);//发送到数据库
+
+                hotInfoDAO.getAllHot(handler);
                 //将微头条显示到界面
+                bmpList.clear();
+                bmpPaths.clear();
                 //清空图片数组
-                hotInfoDAO.publishHot("344616766+", mhText.getText().toString(), mContext);
+
             }
         }
     }
@@ -297,17 +306,16 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             //裁剪返回
             case CODE_RESULT_REQUEST:
                 Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, getActivity());
+                String path =PhotoUtils.getRealPathFromURI(getActivity(),cropImageUri);
                 if (bitmap != null) {
-                    getImages(bitmap);
+                    bmpList.add(bitmap);
+                    bmpPaths.add(path);
                 }
                 break;
             default:
         }
     }
 
-    private void getImages(Bitmap bitmap) {
-        bmpList.add(bitmap);
-    }
 
     /**
      * 检查设备是否存在SDCard的工具方法

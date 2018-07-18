@@ -3,16 +3,17 @@ package com.example.wallace.wallacenews.yan.DAO;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.NotificationCompatSideChannelService;
 import android.widget.Toast;
 
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -29,10 +30,9 @@ public class HotInfoDAO {
         Bmob.initialize(context, "5eac7e65d8080c23fff499ea10d54d93");
     }
     //发布头条
-    public void publishHot(String userid, String hot, final Context context){
-        HotInfo hotInfo = new HotInfo();
-        hotInfo.setUserId(userid);
-        hotInfo.setHot(hot);
+    public void publishHot(HotInfo hotInfo,final Context context){
+        //HotInfo hotInfo = new HotInfo();
+        //hotInfo.setHot(hot);
         hotInfo.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -42,6 +42,10 @@ public class HotInfoDAO {
                     Toast.makeText(context,"发布失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public BmobFile imgPath2File(String path)
+    {
+        return  new BmobFile(new File(path));
     }
 
     //获取某一头条信息
