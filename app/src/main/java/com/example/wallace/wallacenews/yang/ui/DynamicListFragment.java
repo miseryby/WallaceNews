@@ -397,9 +397,9 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
                 @Override
                 public void onClick(View view) {
                     //上传关注信息，暂省略
-                    if(attention.getText().toString().equals("关注"))
+                    if(attention.getText().toString()=="关注")
                     {attention.setText("取消关注");}
-                    if(attention.getText().toString().equals("取消关注"))
+                    if(attention.getText().toString()=="取消关注")
                     {attention.setText("关注");}
 
                 }
