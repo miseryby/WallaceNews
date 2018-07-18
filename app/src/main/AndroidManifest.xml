@@ -38,16 +38,19 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".yang.ui.NewsActivity">
+        <activity android:name=".yang.ui.NewsActivity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity android:name=".yang.ui.WebNews"/>
         <activity android:name=".yang.ui.CollectActivity"/>
         <activity android:name=".yang.ui.HistoryActivity"/>
-        <activity android:name=".yang.ui.WebNews"/>
+        <!--<activity android:name=".yang.ui.HistoryActivity"></activity>-->
+
         <activity android:name=".yang.ui.MeActivity" />
         <activity android:name=".lei.ui.User_login"/>
     </application>

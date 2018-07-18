@@ -92,6 +92,7 @@
             android:id="@+id/col"
             style="@style/user_notice_linearlayout">
             <ImageView
+                android:id="@+id/col"
                 android:src="@mipmap/star"
                 style="@style/user_collect_image"/>
             <TextView
@@ -105,6 +106,7 @@
             android:id="@+id/his"
             style="@style/user_notice_linearlayout">
             <ImageView
+                android:id="@+id/his"
                 android:src="@mipmap/history"
                 style="@style/user_collect_image"/>
             <TextView
@@ -116,6 +118,7 @@
         <LinearLayout
             style="@style/user_notice_linearlayout">
             <ImageView
+                android:id="@+id/night"
                 android:src="@mipmap/night"
                 style="@style/user_collect_image"/>
             <TextView

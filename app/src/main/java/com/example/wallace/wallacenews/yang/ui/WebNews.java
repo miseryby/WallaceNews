@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.peng.beans.Data;
+import com.example.wallace.wallacenews.yang.test.News;
 import com.example.wallace.wallacenews.yang.util.NewsCache;
 import com.example.wallace.wallacenews.yang.util.SerializeUtils;
 
@@ -22,9 +23,9 @@ public class WebNews extends AppCompatActivity {
     private WebView mWebView;
     private TextView mTextView;
     private Button mButton;
-    private Button mButton2;
-    private String title ="newsC";
-    List<Data> mList = new ArrayList<>();
+    private Button mButton1;
+    private List<Data> mCList=new ArrayList<>();
+    private final static String title ="NEWSC";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -32,44 +33,38 @@ public class WebNews extends AppCompatActivity {
         setContentView( R.layout.activity_news_web );
 //        mTextView =(TextView) findViewById( R.id.text_web );
 //        mTextView.setText(intent.getStringExtra("nv_name"));
-        Data data = (Data) intent.getSerializableExtra("news");
-        mList.add( data );
-        NewsCache cache = new NewsCache(getApplicationContext());
-        String s = null;
-        try {
-            s = SerializeUtils.serialize(mList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (cache.checkByKey("F"+title)) {
-
-            cache.updateValue("F"+title, s);
-
-        }
-        else {
-
-            cache.insert("F"+title, s);
-
-        }
 
         mWebView =(WebView) findViewById( R.id.new_web );
         mWebView.loadUrl(intent.getStringExtra( "URL" ));
         mButton =(Button)findViewById( R.id.web_back_btn );
-//        mButton2 =(Button)findViewById( R.id.web_collect_btn );
+        final Data news = (Data) intent.getSerializableExtra( "NEWS" );
         mButton.setOnClickListener( new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
                 Intent intent =new Intent(WebNews.this,NewsActivity.class);
                 startActivity( intent );
             }
         } );
-        mButton2.setOnClickListener( new View.OnClickListener() {
+        mButton1 =(Button)findViewById( R.id.web_col_btn );
+        mButton1.setOnClickListener( new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
+                NewsCache cache = new NewsCache(getApplicationContext());
+                mCList.add( news );
+                String s = null;
+                try {
+                    s = SerializeUtils.serialize(mCList);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                if (cache.checkByKey("F"+title)) {
+
+                    cache.updateValue("F"+title, s);
+                }
+                else {
+                    cache.insert("F"+title, s);
+                }
             }
         } );
     }

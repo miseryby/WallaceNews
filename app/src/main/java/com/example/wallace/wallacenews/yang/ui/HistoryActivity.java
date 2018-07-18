@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.peng.beans.Data;
-import com.example.wallace.wallacenews.yang.adapter.MyRecyclerViewAdapter;
+
 import com.example.wallace.wallacenews.yang.util.NewsCache;
 import com.example.wallace.wallacenews.yang.util.SerializeUtils;
 
@@ -29,9 +29,7 @@ public class HistoryActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private List<Data> mHistoryList=new ArrayList<>(  );
     private NewsAdapter mNewsAdapter;
-    private String title="news";
-    private MyRecyclerViewAdapter mMyRecyclerViewAdapter;
-
+    private final String title="NEWSH";
 
     public HistoryActivity() {
     }
@@ -52,7 +50,6 @@ public class HistoryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mRecyclerView.setLayoutManager( new LinearLayoutManager( this, LinearLayoutManager.VERTICAL, false ) );
-        mMyRecyclerViewAdapter =new MyRecyclerViewAdapter( mHistoryList );
         mNewsAdapter =new NewsAdapter( mHistoryList );
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
