@@ -9,11 +9,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,8 +32,13 @@ import android.widget.Toast;
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.peng.Util.PhotoUtils;
 import com.example.wallace.wallacenews.peng.Util.ToastUtils;
-import com.example.wallace.wallacenews.yang.test.News;
-import com.example.wallace.wallacenews.yang.test.NewsLab;
+import com.example.wallace.wallacenews.yan.DAO.HotInfoDAO;
+import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
+import com.example.wallace.wallacenews.yang.adapter.MyFragmentPagerAdapter;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,6 +58,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     ImageView bt_gallary;
     EditText mhText;
     Context mContext;
+    HotInfoDAO hotInfoDAO;
 
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
@@ -62,10 +71,25 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     private Uri cropImageUri;
     private static final int OUTPUT_X = 480;
     private static final int OUTPUT_Y = 480;
-    @Override
+
+    private static Handler handler;
+
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         mContext = getActivity();
+
+        handler = new Handler() {
+            public void handleMessage(Message msg) {
+                if (msg.what == 1) {
+                    updateUI((List<HotInfo>) msg.obj);
+                } else if (msg.what == 0) {
+                    Toast.makeText(mContext, "获取微头条失败了", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "未知错误", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
 
     }
 
@@ -77,7 +101,9 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         View v = inflater.inflate( R.layout.fragment_dynamic, container, false );
         mRecyclerView = (RecyclerView) v.findViewById( R.id.rcdy );
         mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
-        updateUI();
+
+        hotInfoDAO = new HotInfoDAO();
+        hotInfoDAO.connectDB(mContext);
 
         bmpList = new ArrayList<>();
         bt_gallary = (ImageView) v.findViewById(R.id.imageView5);
@@ -86,8 +112,9 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         EditText mhText = (EditText)v.findViewById(R.id.mh_text);
 
         //从服务器获得微头条
-        //刷新UI界面
+        hotInfoDAO.getAllHot(handler);
 
+        //监听上传图片
         bt_takepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,22 +134,39 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             }
         });
 
+        //下拉刷新
+        RefreshLayout refreshLayout = (RefreshLayout)v.findViewById(R.id.refresh_mh);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                mRecyclerView.removeAllViews();
+                hotInfoDAO.getAllHot(handler);
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+            }
+        });
         return v;
-    }
 
+    }
     private void onReleaseClicked(View view) {
-        if(mhText.getText().length()==0)
-        {
-            Toast.makeText(mContext,"输入不能为空",Toast.LENGTH_SHORT);
-        }
-        else
-        {
-            //创建微头条对象
-            //加入文本
-            //加入图片
-            //发送到数据库
-            //将微头条显示到界面
-            //清空图片数组
+        if(true/*用户没登录*/)
+        { Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT);}
+        else {
+            if (mhText.getText().length() == 0)
+            { Toast.makeText(mContext, "输入不能为空", Toast.LENGTH_SHORT).show(); } else {
+
+                hotInfoDAO.publishHot("344616766+", mhText.getText().toString(), mContext);
+                //加入文本
+                //加入图片
+                //发送到数据库
+                //将微头条显示到界面
+                //清空图片数组
+            }
         }
     }
 
@@ -269,37 +313,48 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         String state = Environment.getExternalStorageState();
         return state.equals(Environment.MEDIA_MOUNTED);
     }
-    private void updateUI() {
+    private void updateUI(List<HotInfo> list) {
 
-        NewsLab newsLab =NewsLab.get( getActivity()  );
-        List<News> newsList =newsLab.getNews();
-        mDynamicAdapter =new DynamicAdapter( newsList );
+        mDynamicAdapter =new DynamicAdapter(list);
         mRecyclerView.setAdapter( mDynamicAdapter );
     }
     private class DynamicHolder extends RecyclerView.ViewHolder {
-        private TextView mTextView1;
-        private TextView mTextView2;
-        private News news;
+        private TextView userName;
+        private TextView releaseTime;
+        private TextView showText;
+        private TextView admireCount;
+        private TextView commentCount;
+        private TextView transmitCount;
+        ImageView mh_img;
 
         public DynamicHolder(LayoutInflater inflater, ViewGroup parent) {
 
             super( inflater.inflate( R.layout.dynamic_condition_fragment_item, parent, false ) );
-            mTextView1 = (TextView) itemView.findViewById( R.id.dyname );
-            mTextView2 = (TextView) itemView.findViewById( R.id.dyTime );
+            userName = (TextView) itemView.findViewById( R.id.dyname );
+            releaseTime = (TextView) itemView.findViewById( R.id.dyTime );
+            admireCount = (TextView) itemView.findViewById( R.id.admireCount );
+            commentCount = (TextView) itemView.findViewById( R.id.commentCount );
+            transmitCount = (TextView) itemView.findViewById( R.id.transmitCount );
+            showText = (TextView) itemView.findViewById( R.id.dyText );
+            mh_img = (ImageView) itemView.findViewById(R.id.mh_image);
         }
 
-        public void bind(News news) {
-            this.news = news;
-            mTextView1.setText( "hello" );
-            mTextView2.setText( "颜表情" );
+        public void bind(HotInfo hotInfo) {
+            userName.setText(hotInfo.getUserName());
+            releaseTime.setText(hotInfo.getCreatedAt());
+            showText.setText(hotInfo.getHot());
+            admireCount.setText(""+hotInfo.getHotLikeNum());
+            commentCount.setText(""+hotInfo.getHotCommentNum());
+            transmitCount.setText(""+hotInfo.getHotTransNum());
+//            mh_img.setImageBitmap((Bitmap) hotInfo.getHotIcon());
         }
     }
 
     private class DynamicAdapter extends RecyclerView.Adapter<DynamicHolder> {
-        List<News> mList = new ArrayList<>();
+        List<HotInfo> mList = new ArrayList<>();
 
-        public DynamicAdapter(List<News> news) {
-            mList = news;
+        public DynamicAdapter(List<HotInfo> hotInfos) {
+            mList = hotInfos;
         }
 
         @Override
@@ -310,8 +365,8 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
 
         @Override
         public void onBindViewHolder(DynamicHolder holder, int position) {
-            News news = mList.get( position );
-            holder.bind( news );
+            HotInfo hots = mList.get( position );
+            holder.bind( hots );
         }
 
 
@@ -320,4 +375,5 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             return mList.size();
         }
     }
+
 }

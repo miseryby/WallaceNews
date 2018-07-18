@@ -7,11 +7,17 @@ import cn.bmob.v3.BmobObject;
 public class HotInfo extends BmobObject {
     private Integer HotId;   //头条ID
     private String UserId;      //用户ID
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    private String UserName;
     private String Hot;         //头条内容
     private Date HotDate;//出版时间
-    private int HotCommentNum; //评论数
-    private int HotLikeNum;    //点赞数
-    private int HotTransNum; //转发数
+    private Integer HotCommentNum; //评论数
+    private Integer HotLikeNum;    //点赞数
+    private Integer HotTransNum; //转发数
 
     public HotInfo() {
     }
