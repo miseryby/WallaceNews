@@ -23,7 +23,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     private RadioGroup mRadioGroup;
     private RadioButton mRadioButton1, mRadioButton2, mRadioButton3;
 
-
     private List<android.support.v4.app.Fragment> listfragment =new ArrayList<>(  ); //创建一个List<Fragment>
     private MyFragmentPagerAdapter mAdapter;
     private CustomViewPager vp;

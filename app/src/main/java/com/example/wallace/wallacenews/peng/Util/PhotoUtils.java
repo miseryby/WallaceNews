@@ -1,8 +1,7 @@
-package com.sb.administrator.microheadline;
+package com.example.wallace.wallacenews.peng.Util;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;

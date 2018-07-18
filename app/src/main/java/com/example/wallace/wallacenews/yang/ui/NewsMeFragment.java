@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.example.wallace.wallacenews.R;
 
-public class NewsMeFragment extends android.support.v4.app.Fragment {
+public class NewsMeFragment extends Fragment {
     private  ImageView mImageViewLogin;
     int i =0;
     @Override
