@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/myinfo_background"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -23,79 +23,84 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"></LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:orientation="horizontal"
-                android:background="@color/colorPrimaryDark">
-                <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/steam2" />
+                android:background="@android:color/transparent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/myicon"
+                    app:civ_border_color="#000000"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_divider" />
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:textSize="40sp"
 
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="0dp"
-                        />
                     <TextView
-                        android:layout_gravity="center_vertical"
-                        android:textSize="30sp"
-                        android:textColor="#cdcdcd"
-                        android:text="username"
                         android:layout_width="match_parent"
+                        android:layout_height="0dp"
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="40sp" />
+
+                    <TextView
+                        android:id="@+id/myname"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="4"
-                        android:layout_height="0dp"
-                        />
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:textSize="15sp"
+                        android:text="第三组五个帅哥"
+                        android:textColor="#cdcdcd"
+                        android:textSize="30sp" />
 
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="0dp"
-                        />
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"></LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark">
+                android:background="@android:color/transparent">
+
                 <ImageView
 
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     app:srcCompat="@mipmap/star" />
+
                 <ImageView
 
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     app:srcCompat="@mipmap/history" />
-                <ImageView
-
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/night" />
 
             </LinearLayout>
             <LinearLayout
@@ -103,159 +108,182 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"></LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
+            android:background="#eaeaea"
             android:orientation="vertical"
             android:padding="3dp">
-        <LinearLayout
-            android:background="@drawable/line_setting"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="登录注册                                              "
-            android:textSize="23sp"
-            />
-        <ImageView
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/up"
-            />
-        </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@android:color/transparent" />
+
             <LinearLayout
-                android:background="@drawable/line_setting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/line_setting"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="登录/注册                                              "
+                    android:textSize="23sp" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/up" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/line_setting"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="手机号                                                  "
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
+
                 <ImageView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/up"
-                    />
+                    app:srcCompat="@mipmap/up" />
             </LinearLayout>
+
             <LinearLayout
-                android:background="@drawable/line_setting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/line_setting"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="用户名                                                  "
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
+
                 <ImageView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/up"
-                    />
+                    app:srcCompat="@mipmap/up" />
             </LinearLayout>
+
             <LinearLayout
-                android:background="@drawable/line_setting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/line_setting"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="系统设置                                              "
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
+
                 <ImageView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/up"
-                    />
+                    app:srcCompat="@mipmap/up" />
             </LinearLayout>
+
             <LinearLayout
-                android:background="@drawable/line_setting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/line_setting"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="缓存清理                                              "
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
+
                 <ImageView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/up"
-                    />
+                    app:srcCompat="@mipmap/up" />
             </LinearLayout>
+
             <LinearLayout
-                android:background="@drawable/line_setting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/line_setting"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="退出登录                                              "
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
+
                 <ImageView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/up"
-                    />
+                    app:srcCompat="@mipmap/up" />
             </LinearLayout>
-           <LinearLayout
 
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight="2">
-               <FrameLayout
-                   android:id="@+id/radioMe"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
-                   <RadioGroup
-                       android:id="@+id/rg3"
-                       android:layout_width="match_parent"
-                       android:layout_height="0dp"
-                       android:layout_weight="1"
-                       android:layout_marginBottom="1dp"
-                       android:layout_marginTop="2dp"
-                       android:orientation="horizontal">
-                       <RadioButton
-                           android:drawableTop="@drawable/home_selector"
-                           style="@style/TapButton"
-                           android:id="@+id/btn1me"
-                           android:checked="true"
-                           android:text="主页"/>
-                       <RadioButton
-                           android:drawableTop="@drawable/discover_selector"
-                           style="@style/TapButton"
-                           android:id="@+id/btn2me"
-                           android:text="发现"/>
+            <LinearLayout
 
-                       <RadioButton
-                           android:drawableTop="@drawable/me_selector"
-                           style="@style/TapButton"
-                           android:id="@+id/btn3me"
-                           android:text="我的"/>
-                   </RadioGroup>
-               </FrameLayout>
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
 
-           </LinearLayout>
+                <FrameLayout
+                    android:id="@+id/radioMe"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioGroup
+                        android:id="@+id/rg3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/btn1me"
+                            style="@style/TapButton"
+                            android:checked="true"
+                            android:drawableTop="@drawable/home_selector"
+                            android:text="主页" />
+
+                        <RadioButton
+                            android:id="@+id/btn2me"
+                            style="@style/TapButton"
+                            android:drawableTop="@drawable/discover_selector"
+                            android:text="发现" />
+
+                        <RadioButton
+                            android:id="@+id/btn3me"
+                            style="@style/TapButton"
+                            android:drawableTop="@drawable/me_selector"
+                            android:text="我的" />
+                    </RadioGroup>
+                </FrameLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
