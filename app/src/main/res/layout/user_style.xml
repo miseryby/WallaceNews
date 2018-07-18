@@ -132,9 +132,11 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_user_login"
             style="@style/user_select_layoustyle"
             android:layout_marginTop="5dp">
             <TextView
+
                style="@style/user_select_textview"
                 android:text="@string/login_register" />
 
