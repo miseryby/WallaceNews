@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wallace.wallacenews.R;
@@ -27,7 +31,10 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     private MyFragmentPagerAdapter mAdapter;
     private CustomViewPager vp;
     private android.support.v4.app.Fragment fm1,fm2,fm3;
+    private TextView textView;
+
     protected abstract android.support.v4.app.Fragment creatFragment();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +49,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         listfragment.add( fm1);
         listfragment.add( fm2 );
         listfragment.add( fm3 );
+
+
+
+
+
         mAdapter = new MyFragmentPagerAdapter( fragmentManager, listfragment );
 
         vp.setAdapter( mAdapter );
@@ -51,6 +63,10 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         mRadioButton1 = (RadioButton) findViewById( R.id.btn1 );
         mRadioButton2 = (RadioButton) findViewById( R.id.btn2 );
         mRadioButton3 = (RadioButton) findViewById( R.id.btn3 );
+
+
+
+
         mRadioGroup.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -70,14 +86,10 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             }
         } );
 
-//        if(fragment ==null){
-//
-//            fragment = new NewsListFragment();
-//            fragmentManager.beginTransaction().
-//                    add( R.id.fragment_container,fragment )
-//                    .commit();
-//        }
-//    }
+
+
+
+
 
     }
 
