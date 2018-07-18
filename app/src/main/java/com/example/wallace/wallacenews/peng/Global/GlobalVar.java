@@ -9,8 +9,8 @@ import com.example.wallace.wallacenews.yan.JavaBean.UserInfo;
  */
 
 public class GlobalVar extends Application {
-    static boolean loginStatus; //name用public声明
-    public UserInfo nowUser;
+    public static boolean loginStatus;
+    public static UserInfo nowUser;
 
     public UserInfo getNowUser() {
         return nowUser;
@@ -23,6 +23,7 @@ public class GlobalVar extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        setLoginStatus(false);
         //如果缓存文件存在，就从缓存中加载用户数据
 
     }

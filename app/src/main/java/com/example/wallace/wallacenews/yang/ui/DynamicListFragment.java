@@ -105,6 +105,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         View v = inflater.inflate( R.layout.fragment_dynamic, container, false );
         mRecyclerView = (RecyclerView) v.findViewById( R.id.rcdy );
         mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        mhText = (EditText) v.findViewById(R.id.mh_text);
 
         hotInfoDAO = new HotInfoDAO();
         hotInfoDAO.connectDB(mContext);
@@ -159,8 +160,8 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
 
     }
     private void onReleaseClicked(View view) {
-        if(globalVar.getLoginStatus())//检查登录状态
-        { Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT);}
+        if(GlobalVar.loginStatus!=true)//检查登录状态
+        { Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT).show();}
         else {
             if (mhText.getText().length() == 0)
             { Toast.makeText(mContext, "输入不能为空", Toast.LENGTH_SHORT).show(); }
