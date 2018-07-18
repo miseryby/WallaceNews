@@ -10,29 +10,34 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_login_head"
+            android:id="@+id/rl_user_login"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/iv_userlogin_return"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/return_l"
-                android:layout_marginLeft="10dp" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/return_l_b"
+                android:layout_marginLeft="10dp"/>
             <TextView
                 android:id="@+id/tv_login_login"
                 style="@style/userlogin_head_textView"
-                android:gravity="center_horizontal"
-                android:text="@string/login" />
+                android:layout_marginLeft="130dp"
+
+
+
+                android:text="@string/login"
+              />
             <TextView
                 android:id="@+id/tv_login_register"
                 style="@style/userlogin_head_textView"
-                android:gravity="center_vertical|right"
+                android:layout_marginLeft="110dp"
+
                 android:text="@string/register"
-                android:paddingRight="15dp" />
+              />
         </LinearLayout>
 
 
@@ -40,8 +45,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
             <EditText
                 style="@style/userlogin_edittext"
                 android:id="@+id/et_login_username"
@@ -65,9 +70,9 @@
             <Button
                 android:id="@+id/bt_login_confirm"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:text="@string/login"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:background="#e20b0b"
                 android:layout_below="@id/tv_login_color"
                 android:layout_alignLeft="@id/tv_login_color"
@@ -78,13 +83,14 @@
                 android:layout_height="40dp"
                 android:orientation="horizontal"
                 android:layout_below="@id/bt_login_confirm"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="15dp">
                 <TextView
                     android:id="@+id/tv_login_numberLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/phone_fast_login"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_login_forgetPW"
@@ -92,7 +98,8 @@
                     android:layout_height="match_parent"
                     android:text="@string/forget_password"
                     android:gravity="right"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

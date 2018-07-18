@@ -89,6 +89,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/col"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:id="@+id/col"
@@ -102,6 +103,7 @@
 
 
         <LinearLayout
+            android:id="@+id/his"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:id="@+id/his"
@@ -135,9 +137,11 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_user_login"
             style="@style/user_select_layoustyle"
             android:layout_marginTop="5dp">
             <TextView
+
                style="@style/user_select_textview"
                 android:text="@string/login_register" />
 

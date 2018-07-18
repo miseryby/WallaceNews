@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh_mh"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
     android:id="@+id/fm2"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -12,17 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <EditText
-        android:minLines="8"
-        android:maxLines="10"
-        android:inputType="textMultiLine"
-        android:textColor="#bfbfbf"
-        android:text="多行输入"
-        android:scrollbars="vertical"
-        android:layout_margin="8dp"
-        android:background="@drawable/edittext_style"
-        android:layout_width="match_parent"
-        android:layout_height="70dp" />
+
+        <EditText
+            android:id="@+id/mh_text"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/edittext_style"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:minLines="3"
+            android:scrollbars="vertical"
+            android:hint="分享你身边的头条新闻~"
+            android:textColor="#000000"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,13 +70,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcdy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-    </android.support.v7.widget.RecyclerView>
-
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcdy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </LinearLayout>
-</LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>

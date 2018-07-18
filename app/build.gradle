@@ -34,4 +34,13 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-12'
     //没有使用特殊Header，可以不加这行
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-12'//没有使用特殊Header，可以不加这行
+
+    //以下SDK开发者请根据需要自行选择
+    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+    //3.5.5：请务必查看下面注释[1]
+    implementation 'cn.bmob.android:bmob-sdk:3.6.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+
 }
