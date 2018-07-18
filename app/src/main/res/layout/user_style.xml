@@ -89,7 +89,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/col"
+
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:id="@+id/col"
@@ -103,7 +103,6 @@
 
 
         <LinearLayout
-            android:id="@+id/his"
             style="@style/user_notice_linearlayout">
             <ImageView
                 android:id="@+id/his"

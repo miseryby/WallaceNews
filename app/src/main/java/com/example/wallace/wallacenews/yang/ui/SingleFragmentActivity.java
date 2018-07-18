@@ -69,11 +69,10 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
                     vp.setCurrentItem( 2,false );
                 }
-                if (checkedId == mRadioButton4.getId()) {
-
-                    vp.setCurrentItem( 2,false );
-                }
-            }
+//                if (checkedId == mRadioButton4.getId()) {
+//
+//                    vp.setCurrentItem( 2,false );
+          }
         } );
 
 //        if(fragment ==null){
