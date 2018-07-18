@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wallace.wallacenews.R;
 
@@ -40,6 +41,7 @@ import com.example.wallace.wallacenews.R;
             public void onClick(View view) {
                 Intent intent=new Intent();
                 //获取输入数据并加入数据库
+                Toast.makeText(User_login.this,"注册成功",Toast.LENGTH_SHORT).show();
 
 
             }
@@ -57,6 +59,8 @@ import com.example.wallace.wallacenews.R;
         tv_phone_number.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent mIntent = new Intent(User_login.this, Phone_number_fastlogin.class);
+                startActivity(mIntent);
 
             }
         });
@@ -65,6 +69,8 @@ import com.example.wallace.wallacenews.R;
         tv_forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent mIntent = new Intent(User_login.this, Set_password.class);
+                startActivity(mIntent);
 
             }
         });
