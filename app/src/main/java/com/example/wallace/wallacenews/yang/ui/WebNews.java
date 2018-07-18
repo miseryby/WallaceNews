@@ -56,7 +56,7 @@ public class WebNews extends AppCompatActivity {
         mWebView =(WebView) findViewById( R.id.new_web );
         mWebView.loadUrl(intent.getStringExtra( "URL" ));
         mButton =(Button)findViewById( R.id.web_back_btn );
-        mButton2 =(Button)findViewById( R.id.web_collect_btn );
+//        mButton2 =(Button)findViewById( R.id.web_collect_btn );
         mButton.setOnClickListener( new View.OnClickListener() {
             @Override
 

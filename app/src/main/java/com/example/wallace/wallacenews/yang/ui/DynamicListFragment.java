@@ -35,6 +35,7 @@ import com.example.wallace.wallacenews.peng.Util.PhotoUtils;
 import com.example.wallace.wallacenews.peng.Util.ToastUtils;
 import com.example.wallace.wallacenews.yan.DAO.HotInfoDAO;
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
+import com.scwang.smartrefresh.header.material.CircleImageView;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -42,8 +43,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.bmob.v3.datatype.BmobPointer;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -115,7 +114,8 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         bt_gallary = (ImageView) v.findViewById(R.id.imageView5);
         bt_takepic = (ImageView) v.findViewById(R.id.imageView3);
         bt_release = (Button)v.findViewById(R.id.button2) ;
-        EditText mhText = (EditText)v.findViewById(R.id.mh_text);
+        mhText = (EditText)v.findViewById(R.id.mh_text);
+//        userIcon = (CircleImageView)v.findViewById(R.id.userIcon);
 
         //从服务器获得微头条
         hotInfoDAO.getAllHot(handler);
@@ -139,6 +139,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
                 onReleaseClicked(view);
             }
         });
+
 
         //下拉刷新
         RefreshLayout refreshLayout = (RefreshLayout)v.findViewById(R.id.refresh_mh);
@@ -178,7 +179,6 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
                 bmpList.clear();
                 bmpPaths.clear();
                 //清空图片数组
-
             }
         }
     }
@@ -337,14 +337,16 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         private TextView admireCount;
         private TextView commentCount;
         private TextView transmitCount;
+        private Button attention;
 
         private ImageView admire;
         private ImageView comment;
         private ImageView trannsmit;
+
+        private de.hdodenhof.circleimageview.CircleImageView userIcon;
         ImageView mh_img;
 
         public DynamicHolder(LayoutInflater inflater, ViewGroup parent) {
-
             super( inflater.inflate( R.layout.dynamic_condition_fragment_item, parent, false ) );
             userName = (TextView) itemView.findViewById( R.id.dyname );
             releaseTime = (TextView) itemView.findViewById( R.id.dyTime );
@@ -353,10 +355,14 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             transmitCount = (TextView) itemView.findViewById( R.id.transmitCount );
             showText = (TextView) itemView.findViewById( R.id.dyText );
             mh_img = (ImageView) itemView.findViewById(R.id.mh_image);
+            attention=(Button)itemView.findViewById(R.id.attention);
 
             admire = (ImageView) itemView.findViewById(R.id.imageViewAdmire);
             comment = (ImageView) itemView.findViewById(R.id.imageViewComment);
             trannsmit = (ImageView) itemView.findViewById(R.id.imageViewTransmit);
+
+            userIcon = (de.hdodenhof.circleimageview.CircleImageView)itemView.findViewById(R.id.userIcon);
+
         }
 
         public void bind(HotInfo hotInfo) {
@@ -367,6 +373,16 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             admireCount.setText(""+hotInfo.getHotLikeNum());
             commentCount.setText(""+hotInfo.getHotCommentNum());
             transmitCount.setText(""+hotInfo.getHotTransNum());
+            //显示用户头像
+            if(ht.getHotIcon()!=null) {
+                String url = ht.getUserIcon().getFileUrl();
+                Glide.with(mContext)
+                        .load(url)
+                        .placeholder(R.drawable.place_image)//图片加载出来前，显示的图片
+                        .error(R.drawable.error_image)//图片加载失败后，显示的图片
+                        .into(userIcon);
+            }
+
             //显示微头条图片
             if(ht.getHotIcon()!=null) {
                 String url = ht.getHotIcon().getFileUrl();
@@ -376,6 +392,18 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
                         .error(R.drawable.error_image)//图片加载失败后，显示的图片
                         .into(mh_img);
             }
+            //点击关注
+            attention.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //上传关注信息，暂省略
+                    if(attention.getText().toString().equals("关注"))
+                    {attention.setText("取消关注");}
+                    if(attention.getText().toString().equals("取消关注"))
+                    {attention.setText("关注");}
+
+                }
+            });
 
             //点赞
             admire.setOnClickListener(new View.OnClickListener() {

@@ -14,6 +14,16 @@ public class HotInfo extends BmobObject {
     }
 
     private String UserName;
+
+    public BmobFile getUserIcon() {
+        return UserIcon;
+    }
+
+    public void setUserIcon(BmobFile userIcon) {
+        UserIcon = userIcon;
+    }
+
+    private BmobFile UserIcon;
     private String Hot;         //头条内容
     private Date HotDate;//出版时间
     private Integer HotCommentNum; //评论数

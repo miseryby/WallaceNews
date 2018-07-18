@@ -55,7 +55,7 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
                 startActivity(mIntent);
             }
         });
-        ll_login_his=(ImageView) v.findViewById(R.id.his);
+//        ll_login_his=(ImageView) v.findViewById(R.id.his);
         ll_login_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +63,7 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
                 startActivity(mIntent);
             }
         });
-        ll_login_col=(ImageView) v.findViewById(R.id.col);
+//        ll_login_col=(ImageView) v.findViewById(R.id.col);
         ll_login_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
