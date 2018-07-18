@@ -1,6 +1,7 @@
 package com.example.wallace.wallacenews.lei.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.example.wallace.wallacenews.R;
         iv_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
 
             }
         });
@@ -36,6 +38,9 @@ import com.example.wallace.wallacenews.R;
         tv_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent();
+                //获取输入数据并加入数据库
+
 
             }
         });

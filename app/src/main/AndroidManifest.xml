@@ -38,6 +38,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        android:theme="@android:style/Theme.Holo.NoActionBar">
         <activity android:name=".yang.ui.NewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

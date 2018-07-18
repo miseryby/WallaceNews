@@ -1,6 +1,8 @@
 package com.example.wallace.wallacenews.peng.beans;
 
-public class Data {
+import java.io.Serializable;
+
+public class Data implements Serializable {
     String title;
     String date;
     String category;
