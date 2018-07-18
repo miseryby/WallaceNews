@@ -26,6 +26,7 @@
                 android:id="@+id/tv_login_login"
                 style="@style/userlogin_head_textView"
                 android:gravity="center_horizontal"
+                android:layout_marginLeft="150dp"
                 android:text="@string/login" />
             <TextView
                 android:id="@+id/tv_login_register"
