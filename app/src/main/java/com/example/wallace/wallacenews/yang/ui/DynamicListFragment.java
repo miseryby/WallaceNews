@@ -16,7 +16,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,11 +33,10 @@ import com.example.wallace.wallacenews.peng.Util.PhotoUtils;
 import com.example.wallace.wallacenews.peng.Util.ToastUtils;
 import com.example.wallace.wallacenews.yan.DAO.HotInfoDAO;
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
-import com.example.wallace.wallacenews.yang.adapter.MyFragmentPagerAdapter;
+import com.example.wallace.wallacenews.yan.SPUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.viewpagerindicator.TabPageIndicator;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -325,6 +323,10 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         private TextView admireCount;
         private TextView commentCount;
         private TextView transmitCount;
+
+        private ImageView admire;
+        private ImageView comment;
+        private ImageView trannsmit;
         ImageView mh_img;
 
         public DynamicHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -337,9 +339,14 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             transmitCount = (TextView) itemView.findViewById( R.id.transmitCount );
             showText = (TextView) itemView.findViewById( R.id.dyText );
             mh_img = (ImageView) itemView.findViewById(R.id.mh_image);
+
+            admire = (ImageView) itemView.findViewById(R.id.imageViewAdmire);
+            comment = (ImageView) itemView.findViewById(R.id.imageViewComment);
+            trannsmit = (ImageView) itemView.findViewById(R.id.imageViewTransmit);
         }
 
         public void bind(HotInfo hotInfo) {
+            final HotInfo ht = hotInfo;
             userName.setText(hotInfo.getUserName());
             releaseTime.setText(hotInfo.getCreatedAt());
             showText.setText(hotInfo.getHot());
@@ -347,11 +354,20 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             commentCount.setText(""+hotInfo.getHotCommentNum());
             transmitCount.setText(""+hotInfo.getHotTransNum());
 //            mh_img.setImageBitmap((Bitmap) hotInfo.getHotIcon());
+            admire.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    hotInfoDAO.clickLikeHot(ht.getUserId(),ht.getHotId(),mContext);
+                    int temp= Integer.parseInt(admireCount.getText().toString());
+                    admireCount.setText(""+(temp+1));
+                    admire.setImageResource(R.drawable.admired);
+                }
+            });
         }
     }
 
     private class DynamicAdapter extends RecyclerView.Adapter<DynamicHolder> {
-        List<HotInfo> mList = new ArrayList<>();
+        List<HotInfo> mList;
 
         public DynamicAdapter(List<HotInfo> hotInfos) {
             mList = hotInfos;

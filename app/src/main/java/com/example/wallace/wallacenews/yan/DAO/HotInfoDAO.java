@@ -80,6 +80,32 @@ public class HotInfoDAO {
             }
         });
     }
+    //点赞某用户某头条
+    public void clickLikeHot(String userid,int hotid,final Context context){
+        BmobQuery<HotInfo> queryUserId = new BmobQuery<>();
+        queryUserId.addWhereEqualTo("UserId", userid);
+        BmobQuery<HotInfo> queryHotId = new BmobQuery<>();
+        queryUserId.addWhereEqualTo("HotId", hotid);
+
+        List<BmobQuery<HotInfo>> query = new ArrayList<>();
+        query.add(queryUserId);
+        query.add(queryHotId);
+
+        BmobQuery<HotInfo> bmobQuery = new BmobQuery<>();
+        bmobQuery.and(query);
+        bmobQuery.findObjects(new FindListener<HotInfo>() {
+            @Override
+            public void done(List<HotInfo> list, BmobException e) {
+                if(e == null){
+                    hi = list.get(0);
+                    hi.setHotLikeNum(hi.getHotLikeNum()+1);
+                    Toast.makeText(context,"点赞成功:",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context,"点赞失败"+e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
     public void getAllHot(final Handler handler) {
         BmobQuery<HotInfo> bmobQuery = new BmobQuery<>();
         bmobQuery.findObjects(new FindListener<HotInfo>() {  //按行查询，查到的数据放到List<Goods>的集合
