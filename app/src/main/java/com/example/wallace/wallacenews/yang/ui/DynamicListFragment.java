@@ -28,12 +28,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
+import com.example.wallace.wallacenews.peng.Global.GlobalVar;
 import com.example.wallace.wallacenews.peng.Util.PhotoUtils;
 import com.example.wallace.wallacenews.peng.Util.ToastUtils;
 import com.example.wallace.wallacenews.yan.DAO.HotInfoDAO;
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
-import com.example.wallace.wallacenews.yan.SPUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -57,6 +58,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     EditText mhText;
     Context mContext;
     HotInfoDAO hotInfoDAO;
+    GlobalVar globalVar;
 
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
@@ -76,6 +78,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         mContext = getActivity();
+        globalVar = new GlobalVar();
 
         handler = new Handler() {
             public void handleMessage(Message msg) {
@@ -152,18 +155,20 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
 
     }
     private void onReleaseClicked(View view) {
-        if(true/*用户没登录*/)
+        if(globalVar.getLoginStatus())//检查登录状态
         { Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT);}
         else {
             if (mhText.getText().length() == 0)
-            { Toast.makeText(mContext, "输入不能为空", Toast.LENGTH_SHORT).show(); } else {
-
-                hotInfoDAO.publishHot("344616766+", mhText.getText().toString(), mContext);
-                //加入文本
+            { Toast.makeText(mContext, "输入不能为空", Toast.LENGTH_SHORT).show(); }
+            else {
+                HotInfo ht = new HotInfo();
+                ht.setHot(mhText.getText().toString());//加入文本
+//                ht.setHotIcon(  );
                 //加入图片
                 //发送到数据库
                 //将微头条显示到界面
                 //清空图片数组
+                hotInfoDAO.publishHot("344616766+", mhText.getText().toString(), mContext);
             }
         }
     }
@@ -353,7 +358,17 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             admireCount.setText(""+hotInfo.getHotLikeNum());
             commentCount.setText(""+hotInfo.getHotCommentNum());
             transmitCount.setText(""+hotInfo.getHotTransNum());
-//            mh_img.setImageBitmap((Bitmap) hotInfo.getHotIcon());
+            //显示微头条图片
+            if(ht.getHotIcon()!=null) {
+                String url = ht.getHotIcon().getFileUrl();
+                Glide.with(mContext)
+                        .load(url)
+                        .placeholder(R.drawable.place_image)//图片加载出来前，显示的图片
+                        .error(R.drawable.error_image)//图片加载失败后，显示的图片
+                        .into(mh_img);
+            }
+
+            //点赞
             admire.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

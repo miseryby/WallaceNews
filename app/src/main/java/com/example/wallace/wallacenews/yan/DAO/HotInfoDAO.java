@@ -3,6 +3,7 @@ package com.example.wallace.wallacenews.yan.DAO;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.NotificationCompatSideChannelService;
 import android.widget.Toast;
 
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
@@ -99,9 +100,17 @@ public class HotInfoDAO {
                 if(e == null){
                     hi = list.get(0);
                     hi.setHotLikeNum(hi.getHotLikeNum()+1);
-                    Toast.makeText(context,"点赞成功:",Toast.LENGTH_LONG).show();
+                    hi.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if(e == null)
+                                Toast.makeText(context,"点赞成功:",Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(context,"点赞出现异常",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }else{
-                    Toast.makeText(context,"点赞失败"+e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"找不到微头条"+e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
