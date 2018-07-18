@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import com.example.wallace.wallacenews.peng.Global.GlobalVar;
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
 
 import java.io.File;
@@ -25,14 +26,17 @@ public class HotInfoDAO {
 
 
     //数据库连接
-    public void connectDB(Context context){
+    public static void connectDB(Context context){
         //第一：默认初始化
         Bmob.initialize(context, "5eac7e65d8080c23fff499ea10d54d93");
     }
     //发布头条
     public void publishHot(HotInfo hotInfo,final Context context){
-        //HotInfo hotInfo = new HotInfo();
-        //hotInfo.setHot(hot);
+        hotInfo.setUserName(GlobalVar.nowUser.getUserName());
+        hotInfo.setUserIcon(GlobalVar.nowUser.getIcon());
+        hotInfo.setHotCommentNum(0);
+        hotInfo.setHotLikeNum(0);
+        hotInfo.setHotTransNum(0);
         hotInfo.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

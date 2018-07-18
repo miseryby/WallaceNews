@@ -42,6 +42,24 @@ public class UserInfoDAO {
         Bmob.initialize(context, "5eac7e65d8080c23fff499ea10d54d93");
     }
 
+    //寻找获得一个用户
+    public static void findUser(String userid,Context context,final Handler handler){
+        HotInfoDAO.connectDB(context);
+        final UserInfo userInfo=new UserInfo();
+        BmobQuery<UserInfo> queryUserId = new BmobQuery<>();
+        queryUserId.addWhereEqualTo("UserId", userid);
+        queryUserId.findObjects(new FindListener<UserInfo>() {
+            @Override
+            public void done(List<UserInfo> list, BmobException e) {
+                if(list.size() == 1)
+                {Message msg = handler.obtainMessage();
+                msg.what = 1;
+                msg.obj = list.get(0);
+                handler.sendMessage(msg);}
+            }
+        });
+    }
+
     //添加用户，通过注册账号密码
     public void insertUser(String userid, String password, final Context context){
         UserInfo userInfo = new UserInfo();

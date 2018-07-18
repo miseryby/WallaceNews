@@ -8,12 +8,16 @@ import cn.bmob.v3.datatype.BmobFile;
 public class HotInfo extends BmobObject {
     private Integer HotId;   //头条ID
     private String UserId;      //用户ID
+    private String UserName;
 
     public String getUserName() {
         return UserName;
     }
 
-    private String UserName;
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
 
     public BmobFile getUserIcon() {
         return UserIcon;
