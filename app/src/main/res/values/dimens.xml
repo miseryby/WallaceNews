@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="toolbar_textSize">25dp</dimen>
+    <dimen name="toolbar_textSize">20dp</dimen>
     <dimen name="phone_fastlogin_margintop">20dp</dimen>
     <dimen name="user_letter_margintop">5dp</dimen>
     <dimen name="user_imager_magintop">5dp</dimen>

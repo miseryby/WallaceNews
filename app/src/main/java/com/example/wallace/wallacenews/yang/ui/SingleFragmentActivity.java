@@ -71,7 +71,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == mRadioButton1.getId()) {
-                    Toast.makeText( SingleFragmentActivity.this, "你点击了首页", Toast.LENGTH_SHORT ).show();
+                    //Toast.makeText( SingleFragmentActivity.this, "你点击了首页", Toast.LENGTH_SHORT ).show();
                     vp.setCurrentItem( 0,false );
                 }
                 if (checkedId == mRadioButton2.getId()) {
@@ -80,7 +80,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
                 }
                 if (checkedId == mRadioButton3.getId()) {
-                    Toast.makeText( SingleFragmentActivity.this, "你点击了我的", Toast.LENGTH_SHORT ).show();
+                    //Toast.makeText( SingleFragmentActivity.this, "你点击了我的", Toast.LENGTH_SHORT ).show();
                     vp.setCurrentItem( 2,false );
                 }
             }

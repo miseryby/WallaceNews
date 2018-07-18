@@ -16,7 +16,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,20 +28,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
+import com.example.wallace.wallacenews.peng.Global.GlobalVar;
 import com.example.wallace.wallacenews.peng.Util.PhotoUtils;
 import com.example.wallace.wallacenews.peng.Util.ToastUtils;
 import com.example.wallace.wallacenews.yan.DAO.HotInfoDAO;
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
-import com.example.wallace.wallacenews.yang.adapter.MyFragmentPagerAdapter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.viewpagerindicator.TabPageIndicator;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.datatype.BmobPointer;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -50,6 +51,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     private RecyclerView mRecyclerView;
     private DynamicAdapter mDynamicAdapter;
     private List<Bitmap> bmpList;
+    private  List<String> bmpPaths;
 
     private static final String TAG = "PhotoImageFragment";
 
@@ -59,6 +61,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     EditText mhText;
     Context mContext;
     HotInfoDAO hotInfoDAO;
+    GlobalVar globalVar;
 
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
@@ -78,6 +81,7 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         mContext = getActivity();
+        globalVar = new GlobalVar();
 
         handler = new Handler() {
             public void handleMessage(Message msg) {
@@ -101,11 +105,13 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         View v = inflater.inflate( R.layout.fragment_dynamic, container, false );
         mRecyclerView = (RecyclerView) v.findViewById( R.id.rcdy );
         mRecyclerView.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        mhText = (EditText) v.findViewById(R.id.mh_text);
 
         hotInfoDAO = new HotInfoDAO();
         hotInfoDAO.connectDB(mContext);
 
         bmpList = new ArrayList<>();
+        bmpPaths = new ArrayList<>();
         bt_gallary = (ImageView) v.findViewById(R.id.imageView5);
         bt_takepic = (ImageView) v.findViewById(R.id.imageView3);
         bt_release = (Button)v.findViewById(R.id.button2) ;
@@ -154,18 +160,25 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
 
     }
     private void onReleaseClicked(View view) {
-        if(true/*用户没登录*/)
-        { Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT);}
+        if(GlobalVar.loginStatus!=true)//检查登录状态
+        { Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT).show();}
         else {
             if (mhText.getText().length() == 0)
-            { Toast.makeText(mContext, "输入不能为空", Toast.LENGTH_SHORT).show(); } else {
+            { Toast.makeText(mContext, "输入不能为空", Toast.LENGTH_SHORT).show(); }
+            else {
+                HotInfo ht = new HotInfo();
+                ht.setHot(mhText.getText().toString());//加入文本
+                if(bmpPaths.size()>0)
+                {ht.setHotIcon(hotInfoDAO.imgPath2File(bmpPaths.get(0)));}//加入图片
+                ht.setUserId(globalVar.nowUser.getUserId());
+                hotInfoDAO.publishHot(ht, mContext);//发送到数据库
 
-                hotInfoDAO.publishHot("344616766+", mhText.getText().toString(), mContext);
-                //加入文本
-                //加入图片
-                //发送到数据库
+                hotInfoDAO.getAllHot(handler);
                 //将微头条显示到界面
+                bmpList.clear();
+                bmpPaths.clear();
                 //清空图片数组
+
             }
         }
     }
@@ -294,17 +307,16 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             //裁剪返回
             case CODE_RESULT_REQUEST:
                 Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, getActivity());
+                String path =PhotoUtils.getRealPathFromURI(getActivity(),cropImageUri);
                 if (bitmap != null) {
-                    getImages(bitmap);
+                    bmpList.add(bitmap);
+                    bmpPaths.add(path);
                 }
                 break;
             default:
         }
     }
 
-    private void getImages(Bitmap bitmap) {
-        bmpList.add(bitmap);
-    }
 
     /**
      * 检查设备是否存在SDCard的工具方法
@@ -325,6 +337,10 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
         private TextView admireCount;
         private TextView commentCount;
         private TextView transmitCount;
+
+        private ImageView admire;
+        private ImageView comment;
+        private ImageView trannsmit;
         ImageView mh_img;
 
         public DynamicHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -337,21 +353,45 @@ public class DynamicListFragment extends  android.support.v4.app.Fragment {
             transmitCount = (TextView) itemView.findViewById( R.id.transmitCount );
             showText = (TextView) itemView.findViewById( R.id.dyText );
             mh_img = (ImageView) itemView.findViewById(R.id.mh_image);
+
+            admire = (ImageView) itemView.findViewById(R.id.imageViewAdmire);
+            comment = (ImageView) itemView.findViewById(R.id.imageViewComment);
+            trannsmit = (ImageView) itemView.findViewById(R.id.imageViewTransmit);
         }
 
         public void bind(HotInfo hotInfo) {
+            final HotInfo ht = hotInfo;
             userName.setText(hotInfo.getUserName());
             releaseTime.setText(hotInfo.getCreatedAt());
             showText.setText(hotInfo.getHot());
             admireCount.setText(""+hotInfo.getHotLikeNum());
             commentCount.setText(""+hotInfo.getHotCommentNum());
             transmitCount.setText(""+hotInfo.getHotTransNum());
-//            mh_img.setImageBitmap((Bitmap) hotInfo.getHotIcon());
+            //显示微头条图片
+            if(ht.getHotIcon()!=null) {
+                String url = ht.getHotIcon().getFileUrl();
+                Glide.with(mContext)
+                        .load(url)
+                        .placeholder(R.drawable.place_image)//图片加载出来前，显示的图片
+                        .error(R.drawable.error_image)//图片加载失败后，显示的图片
+                        .into(mh_img);
+            }
+
+            //点赞
+            admire.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    hotInfoDAO.clickLikeHot(ht.getUserId(),ht.getHotId(),mContext);
+                    int temp= Integer.parseInt(admireCount.getText().toString());
+                    admireCount.setText(""+(temp+1));
+                    admire.setImageResource(R.drawable.admired);
+                }
+            });
         }
     }
 
     private class DynamicAdapter extends RecyclerView.Adapter<DynamicHolder> {
-        List<HotInfo> mList = new ArrayList<>();
+        List<HotInfo> mList;
 
         public DynamicAdapter(List<HotInfo> hotInfos) {
             mList = hotInfos;

@@ -7,16 +7,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="81dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="5dp"
+        android:background="#e5e2e2"
+        app:layout_constraintBottom_toTopOf="@+id/dyname" />
 
     <ImageView
         android:id="@+id/mh_image"
-        android:layout_width="128dp"
-        android:layout_height="105dp"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dyText"
-        app:srcCompat="@mipmap/steam2" />
+        app:layout_constraintTop_toBottomOf="@+id/dyText" />
 
     <TextView
         android:id="@+id/dyname"
@@ -26,6 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,17 +52,16 @@
         tools:text="Time" />
 
     <Button
-        android:background="@drawable/btn_bottom_confirm_bg"
         android:id="@+id/button"
         android:layout_width="69dp"
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/btn_bottom_confirm_bg"
+        android:text="关注"
         android:textColor="#ffffff"
-        tools:text="关注" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dyText"
@@ -65,19 +71,21 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dyTime"
         tools:text="具体在社交媒体发表的动态的文字" />
 
     <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mh_image">
+        app:layout_constraintTop_toBottomOf="@+id/mh_image"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/ll_admire"
@@ -139,5 +147,12 @@
                 android:text="0" />
         </LinearLayout>
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="5dp"
+        android:background="#e5e2e2"
+        app:layout_constraintTop_toBottomOf="@+id/rl" />
 
 </android.support.constraint.ConstraintLayout>

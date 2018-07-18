@@ -3,6 +3,7 @@ package com.example.wallace.wallacenews.yan.JavaBean;
 import java.util.Date;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobFile;
 
 public class HotInfo extends BmobObject {
     private Integer HotId;   //头条ID
@@ -18,6 +19,16 @@ public class HotInfo extends BmobObject {
     private Integer HotCommentNum; //评论数
     private Integer HotLikeNum;    //点赞数
     private Integer HotTransNum; //转发数
+
+    public BmobFile getHotIcon() {
+        return HotIcon;
+    }
+
+    public void setHotIcon(BmobFile hotIcon) {
+        HotIcon = hotIcon;
+    }
+
+    private BmobFile HotIcon;
 
     public HotInfo() {
     }

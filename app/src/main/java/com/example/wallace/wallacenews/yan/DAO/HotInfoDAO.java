@@ -7,11 +7,13 @@ import android.widget.Toast;
 
 import com.example.wallace.wallacenews.yan.JavaBean.HotInfo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -28,10 +30,9 @@ public class HotInfoDAO {
         Bmob.initialize(context, "5eac7e65d8080c23fff499ea10d54d93");
     }
     //发布头条
-    public void publishHot(String userid, String hot, final Context context){
-        HotInfo hotInfo = new HotInfo();
-        hotInfo.setUserId(userid);
-        hotInfo.setHot(hot);
+    public void publishHot(HotInfo hotInfo,final Context context){
+        //HotInfo hotInfo = new HotInfo();
+        //hotInfo.setHot(hot);
         hotInfo.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -41,6 +42,10 @@ public class HotInfoDAO {
                     Toast.makeText(context,"发布失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public BmobFile imgPath2File(String path)
+    {
+        return  new BmobFile(new File(path));
     }
 
     //获取某一头条信息
@@ -76,6 +81,40 @@ public class HotInfoDAO {
                 //需要用到适配器
                 if(e == null) {
 
+                }
+            }
+        });
+    }
+    //点赞某用户某头条
+    public void clickLikeHot(String userid,int hotid,final Context context){
+        BmobQuery<HotInfo> queryUserId = new BmobQuery<>();
+        queryUserId.addWhereEqualTo("UserId", userid);
+        BmobQuery<HotInfo> queryHotId = new BmobQuery<>();
+        queryUserId.addWhereEqualTo("HotId", hotid);
+
+        List<BmobQuery<HotInfo>> query = new ArrayList<>();
+        query.add(queryUserId);
+        query.add(queryHotId);
+
+        BmobQuery<HotInfo> bmobQuery = new BmobQuery<>();
+        bmobQuery.and(query);
+        bmobQuery.findObjects(new FindListener<HotInfo>() {
+            @Override
+            public void done(List<HotInfo> list, BmobException e) {
+                if(e == null){
+                    hi = list.get(0);
+                    hi.setHotLikeNum(hi.getHotLikeNum()+1);
+                    hi.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if(e == null)
+                                Toast.makeText(context,"点赞成功:",Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(context,"点赞出现异常",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(context,"找不到微头条"+e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });

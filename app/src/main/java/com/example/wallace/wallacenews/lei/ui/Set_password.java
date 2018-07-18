@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.wallace.wallacenews.R;
@@ -21,6 +22,13 @@ import com.example.wallace.wallacenews.R;
 
         //确认按钮监听
         Button bt_password_confirm=(Button)findViewById(R.id.bt_setpassword_confirm);
+        ImageButton ib_return=(ImageButton)findViewById(R.id.ib_login_phone_fastlogin) ;
+        ib_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         bt_password_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
