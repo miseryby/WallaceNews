@@ -27,7 +27,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     private List<android.support.v4.app.Fragment> listfragment =new ArrayList<>(  ); //创建一个List<Fragment>
     private MyFragmentPagerAdapter mAdapter;
     private CustomViewPager vp;
-    private android.support.v4.app.Fragment fm1,fm2,fm3;
+    private android.support.v4.app.Fragment fm1,fm2,fm3,fm4;
     protected abstract android.support.v4.app.Fragment creatFragment();
 
     @Override
@@ -40,9 +40,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         fm1 =new NewsSortFragement();
         fm2 =new DynamicListFragment();
         fm3 =new NewsMeFragment();
+        fm4 = new PicFragment();
         listfragment.add( fm1);
         listfragment.add( fm2 );
         listfragment.add( fm3 );
+        listfragment.add( fm4 );
         mAdapter = new MyFragmentPagerAdapter( fragmentManager, listfragment );
 
         vp.setAdapter( mAdapter );
@@ -58,21 +60,22 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == mRadioButton1.getId()) {
 
-                    vp.setCurrentItem( 0,false );
+                    vp.setCurrentItem( 0, false );
                 }
                 if (checkedId == mRadioButton2.getId()) {
 
-                    vp.setCurrentItem( 1,false );
+                    vp.setCurrentItem( 1, false );
 
                 }
                 if (checkedId == mRadioButton3.getId()) {
 
-                    vp.setCurrentItem( 2,false );
+                    vp.setCurrentItem( 2, false );
                 }
-//                if (checkedId == mRadioButton4.getId()) {
-//
-//                    vp.setCurrentItem( 2,false );
-          }
+                if (checkedId == mRadioButton4.getId()) {
+
+                    vp.setCurrentItem( 3, false );
+                }
+            }
         } );
 
 //        if(fragment ==null){

@@ -96,7 +96,7 @@ public class NetworkNewsUtil {
         return GetNewsFromNetwork(newsType_keji,handler);
     }
 
-    private static List<String> GetPicOfNews(String newstype,Handler handler)
+    public static List<String> GetPicOfNews(String newstype,Handler handler)
     {
         List<String> picUrl = new ArrayList<>();
         try {

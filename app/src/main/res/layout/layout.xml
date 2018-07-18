@@ -2,18 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rcy_pic"
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_height="wrap_content">
-
-</android.support.v7.widget.RecyclerView>
-<android.support.v7.widget.RecyclerView
-        android:id="@+id/rcy_pic2"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    >
+    <!--<TextView-->
+        <!--android:text="hrllo"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcy_pic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/rcy_pic2"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+
+        <!--</android.support.v7.widget.RecyclerView>-->
+</LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>
