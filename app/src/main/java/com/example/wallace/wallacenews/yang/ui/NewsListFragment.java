@@ -6,15 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +19,11 @@ import com.bumptech.glide.Glide;
 import com.example.wallace.wallacenews.R;
 import com.example.wallace.wallacenews.peng.Util.NetworkNewsUtil;
 import com.example.wallace.wallacenews.peng.beans.Data;
-import com.example.wallace.wallacenews.yang.adapter.MyFragmentPagerAdapter;
-import com.example.wallace.wallacenews.yang.test.News;
-import com.example.wallace.wallacenews.yang.test.NewsLab;
+import com.example.wallace.wallacenews.yang.util.NewsCache;
+import com.example.wallace.wallacenews.yang.util.SerializeUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -46,7 +41,9 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
         }
     };
     private int mNewsSort;
-
+    private List<Data> mHList =new ArrayList<>(  );
+    private final static String title ="NEWSH";
+//    private MyStyleApplication mMyStyleApplication ;
     @SuppressLint("ValidFragment")
     public NewsListFragment(int newsSort) {
         mNewsSort = newsSort;
@@ -61,7 +58,7 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-
+//        mMyStyleApplication =MyStyleApplication.getInstance();
     }
 
     //    public static NewsListFragment newInstance(String sort){
@@ -127,10 +124,23 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
             mImageView = (ImageView) itemView.findViewById( R.id.imageView );
         }
 
-        public void bind(final Data news) {
+        public void bind(final Data news) throws IOException {
             this.news = news;
             mTextView1.setText( news.getTitle() );
             mTextView2.setText( news.getDate().toString() );
+            NewsCache cache = new NewsCache(getContext());
+            mHList.add( news );
+            String s = SerializeUtils.serialize(mHList);
+
+            if (cache.checkByKey("F"+title)) {
+
+                cache.updateValue("F"+title, s);
+            }
+            else {
+                cache.insert("F"+title, s);
+            }
+
+
             final String url = news.getUrl();
             mTextView1.setOnClickListener( new View.OnClickListener() {
                 @Override
@@ -139,7 +149,7 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
                     Toast.makeText(getActivity(), news.getTitle(), Toast.LENGTH_LONG).show();
                     Intent intent =new Intent(getActivity(),WebNews.class);
                     intent.putExtra( "URL", url);
-
+                    intent.putExtra( "NEWS",news );
                     startActivity(intent);
                 }
             } );
@@ -165,7 +175,11 @@ public class NewsListFragment extends android.support.v4.app.Fragment {
         @Override
         public void onBindViewHolder(NewsHolder holder, final int position) {
             Data news = mList.get( position );
-            holder.bind( news );
+            try {
+                holder.bind( news );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
 

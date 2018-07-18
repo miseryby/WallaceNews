@@ -21,7 +21,7 @@ import java.util.List;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     private RadioGroup mRadioGroup;
-    private RadioButton mRadioButton1, mRadioButton2, mRadioButton3;
+    private RadioButton mRadioButton1, mRadioButton2, mRadioButton3,mRadioButton4;
 
 
     private List<android.support.v4.app.Fragment> listfragment =new ArrayList<>(  ); //创建一个List<Fragment>
@@ -52,11 +52,12 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         mRadioButton1 = (RadioButton) findViewById( R.id.btn1 );
         mRadioButton2 = (RadioButton) findViewById( R.id.btn2 );
         mRadioButton3 = (RadioButton) findViewById( R.id.btn3 );
+        mRadioButton4 = (RadioButton) findViewById( R.id.btn4 );
         mRadioGroup.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == mRadioButton1.getId()) {
-                    Toast.makeText( SingleFragmentActivity.this, "你点击了首页", Toast.LENGTH_SHORT ).show();
+
                     vp.setCurrentItem( 0,false );
                 }
                 if (checkedId == mRadioButton2.getId()) {
@@ -65,7 +66,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
                 }
                 if (checkedId == mRadioButton3.getId()) {
-                    Toast.makeText( SingleFragmentActivity.this, "你点击了我的", Toast.LENGTH_SHORT ).show();
+
+                    vp.setCurrentItem( 2,false );
+                }
+                if (checkedId == mRadioButton4.getId()) {
+
                     vp.setCurrentItem( 2,false );
                 }
             }
