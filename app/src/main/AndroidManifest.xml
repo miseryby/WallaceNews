@@ -23,7 +23,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/wallace"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -40,6 +40,9 @@
         </provider>
         <activity android:name=".yang.ui.NewsActivity"
             android:windowSoftInputMode="stateHidden">
+
+        </activity>
+        <activity android:name=".peng.Activity.launcherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

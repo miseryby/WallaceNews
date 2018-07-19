@@ -34,12 +34,13 @@
             style="@style/TapButton"
             android:id="@+id/btn2"
             android:text="发现"/>
+
         <RadioButton
-            android:drawableTop="@drawable/pic_selector"
-            style="@style/TapButton"
             android:id="@+id/btn4"
-            android:checked="true"
-            android:text="图片"/>
+            style="@style/TapButton"
+            android:checked="false"
+            android:drawableTop="@drawable/pic_selector"
+            android:text="图片" />
         <RadioButton
             android:drawableTop="@drawable/me_selector"
             style="@style/TapButton"

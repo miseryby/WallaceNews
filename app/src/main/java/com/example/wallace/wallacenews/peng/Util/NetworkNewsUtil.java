@@ -16,7 +16,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 public class NetworkNewsUtil {
-    private static String APPCODE = "APPCODE 6e62dc607a0c4c62b4c970fa13fa5c68";
+    private static String APPCODE = "APPCODE 1c47f03bc4324e638195a51a124ab4c1";
+//    private static String APPCODE = "APPCODE 6e62dc607a0c4c62b4c970fa13fa5c68";
     private static String newsType_top = "http://toutiao-ali.juheapi.com/toutiao/index?type=top";
     private static String newsType_shehui = "http://toutiao-ali.juheapi.com/toutiao/index?type=shehui";
     private static String newsType_guonei = "http://toutiao-ali.juheapi.com/toutiao/index?type=guonei";
@@ -115,6 +116,8 @@ public class NetworkNewsUtil {
                 JSONObject json = new JSONObject(str);
                 JSONObject result = json.getJSONObject("result");
                 JSONArray arr = result.getJSONArray("data");
+
+                
 
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject temp = arr.getJSONObject(i);
