@@ -46,12 +46,12 @@ public class GlobalVar extends Application {
                 }
             }
         };
-        UserInfoDAO.findUser(""+12345678,GlobalVar.this,handler);
+        UserInfoDAO.findUser("344616766+",GlobalVar.this,handler);
         //如果缓存文件存在，就从缓存中加载用户数据
     }
     public boolean getLoginStatus() {//调用此函数可以获得name的值.
-        return loginStatus;
-    }
+    return loginStatus;
+}
     public void setLoginStatus(boolean status) {//调用此函数可以改变name的值，name是一个字符串类型的数据.
         this.loginStatus = status;
     }

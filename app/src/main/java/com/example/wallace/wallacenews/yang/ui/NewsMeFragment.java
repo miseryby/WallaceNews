@@ -30,8 +30,6 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-
-
     }
     @Nullable
     @Override
@@ -41,17 +39,17 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
         MyIcon = (ImageView)v.findViewById(R.id.imageView4);
         MyName = (TextView) v.findViewById(R.id.myname);
 
-//        if(GlobalVar.loginStatus==true) {
+        if(GlobalVar.loginStatus==true) {
             //加载头像
-//            String url = GlobalVar.nowUser.getIcon().getFileUrl();
-//            Glide.with(NewsMeFragment.this)
-//                    .load(url)
-//                    .placeholder(R.drawable.place_image)//图片加载出来前，显示的图片
-//                    .error(R.drawable.error_image)//图片加载失败后，显示的图片
-//                    .into(MyIcon);
-//              //加载用户名
-//            MyName.setText(GlobalVar.nowUser.getUserName());
-//        }
+            String url = GlobalVar.nowUser.getIcon().getFileUrl();
+            Glide.with(NewsMeFragment.this)
+                    .load(url)
+                    .placeholder(R.drawable.place_image)//图片加载出来前，显示的图片
+                    .error(R.drawable.error_image)//图片加载失败后，显示的图片
+                    .into(MyIcon);
+              //加载用户名
+            MyName.setText(GlobalVar.nowUser.getUserName());
+        }
 
         mImageHis.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -70,6 +68,4 @@ public class NewsMeFragment extends android.support.v4.app.Fragment {
         } );
         return v;
     }
-
-
 }
